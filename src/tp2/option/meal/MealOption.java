@@ -4,9 +4,13 @@ import tp2.option.ReservationOption;
 import tp2.reservation.Reservation;
 
 public abstract class MealOption extends ReservationOption{
-
-	public MealOption(Reservation reservation) {
+	private int nbPeople;
+	
+	public MealOption(Reservation reservation, int nbPeople) {
 		super(reservation);
 	}
-
+	
+	public int getNbPeople(){
+		return this.nbPeople;
+	}
 }

@@ -6,16 +6,13 @@ public class MealGastronomicSupper extends MealOption {
 	public final static double DEFAULT_COST_PER_PERSON = 22;
 	private static double unitCostPerPerson = DEFAULT_COST_PER_PERSON;
 	
-	private int nbPeople;
-	
 	public MealGastronomicSupper(Reservation reservation, int nbPeople) {
-		super(reservation);
-		this.nbPeople = nbPeople;
+		super(reservation, nbPeople);
 	}
 
 	@Override
 	public double getUnitCost() {
-		return MealGastronomicSupper.unitCostPerPerson * this.nbPeople;
+		return MealGastronomicSupper.unitCostPerPerson * super.getNbPeople();
 	}
 	
 	public static void setUnitCost(double cost){
