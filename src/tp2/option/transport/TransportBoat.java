@@ -19,5 +19,8 @@ public class TransportBoat extends TransportOption {
 		return TransportBoat.unitCostPerPerson * this.nbPeople;
 	}
 	
+	public static void setUnitCost(double cost){
+		TransportBoat.unitCostPerPerson = cost;
+	}
 
 }

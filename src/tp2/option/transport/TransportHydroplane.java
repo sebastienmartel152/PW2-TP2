@@ -19,5 +19,8 @@ public class TransportHydroplane extends TransportOption {
 		return TransportHydroplane.unitCostPerPerson * this.nbPeople;
 	}
 	
+	public static void setUnitCost(double cost){
+		TransportHydroplane.unitCostPerPerson = cost;
+	}
 
 }
