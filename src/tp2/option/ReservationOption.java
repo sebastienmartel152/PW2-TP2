@@ -9,6 +9,7 @@ public abstract class ReservationOption implements Reservation{
 		this.currentReservation = reservation;
 	}
 	
+	@Override
 	public double calculateTotalCost(){
 		return this.currentReservation.calculateTotalCost() + this.getUnitCost();
 	}
