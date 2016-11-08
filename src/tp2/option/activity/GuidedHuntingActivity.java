@@ -23,7 +23,7 @@ public class GuidedHuntingActivity extends ReservationOption {
 	}
 
 	public double getUnitCost(){
-		return this.unitCost;
+		return GuidedHuntingActivity.unitCost;
 	}
 	
 	public static void setUnitCost(double newCost){

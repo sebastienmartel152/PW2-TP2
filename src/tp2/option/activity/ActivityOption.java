@@ -13,7 +13,7 @@ public abstract class ActivityOption extends ReservationOption {
 		this.numberOfPeople = numberOfPeople;
 	}
 
-	private void validateNumberOfPeople(int numberOfPeople2) {
+	private void validateNumberOfPeople(int numberOfPeople) {
 		if(numberOfPeople < 1){
 			throw new NumberOfPeopleIsBelow0Exception();
 		}
