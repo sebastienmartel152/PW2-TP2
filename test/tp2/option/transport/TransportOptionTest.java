@@ -14,9 +14,9 @@ public class TransportOptionTest {
 	public void TransportDecorator_calculateTotalCost_shouldAddCostToBaseCottageCost() {
 		// Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE);
-		Reservation cottageWithTransport = new TransportOptionMock(cottage);
+		Reservation cottageWithTransport = new TransportOptionMock(cottage, ANY_NUMBER_OF_PEOPLE);
 		
-		final double EXPECTED_PRICE = cottage.calculateTotalCost() + TransportOptionMock.ANY_COST;
+		final double EXPECTED_PRICE = cottage.calculateTotalCost() + TransportOptionMock.ANY_COST * ANY_NUMBER_OF_PEOPLE;
 		
 		// Act
 		double actualPrice = cottageWithTransport.calculateTotalCost();
