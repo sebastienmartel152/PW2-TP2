@@ -15,12 +15,12 @@ public class ActivityMockTest {
 	public void ActivityOptionDecorator_calculateTotalCost_shouldAddPriceToBaseCottagePrice() {
 		// Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE);
-		Reservation cottageWithActivity = new ActivityMock(cottage, ANY_NUMBER_OF_PEOPLE);
 		
 		final double EXPECTED_PRICE = cottage.calculateTotalCost() + 
 			ActivityMock.ANY_COST_PER_PERSON * ANY_NUMBER_OF_PEOPLE;
 		
 		// Act
+		Reservation cottageWithActivity = new ActivityMock(cottage, ANY_NUMBER_OF_PEOPLE);
 		double actualPrice = cottageWithActivity.calculateTotalCost();
 		
 		// Assert
