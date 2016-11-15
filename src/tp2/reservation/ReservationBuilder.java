@@ -5,10 +5,14 @@ import tp2.cottage.SixPersonCottage;
 import tp2.cottage.TenPersonCottage;
 import tp2.option.activity.BaitBuildingActivity;
 import tp2.option.activity.BeaverObservationActivity;
+import tp2.option.activity.BlackBearObservationActivity;
+import tp2.option.activity.FishSmokingActivity;
 import tp2.option.activity.FishingActivity;
 import tp2.option.activity.GuidedHuntingActivity;
 import tp2.option.activity.TrappingActivity;
 import tp2.option.activity.WolfObservationActivity;
+import tp2.option.meal.MealBreakfastDinner;
+import tp2.option.meal.MealGastronomicSupper;
 import tp2.option.meal.MealSupper;
 import tp2.option.service.ATVService;
 import tp2.option.service.CleaningService;
@@ -27,6 +31,10 @@ public class ReservationBuilder {
 		addTransport(transportFrom, numberOfPeople);
 		
 		addSupper(numberOfPeople, numberOfDays);
+	}
+	
+	public ReservationBuilder(Deal deal, int numberOfPeople, int numberOfDays){
+		
 	}
 	
 	private void setBaseCottage(CottageType cottageType, int numberOfPeople){
@@ -62,6 +70,19 @@ public class ReservationBuilder {
 	private void addSupper(int numberOfPeople, int numberOfDays){
 		reservation = new MealSupper(reservation, numberOfPeople, numberOfDays);
 	}
+	
+	public ReservationBuilder withBreakfastDinner(int numberOfPeople, int numberOfDays){
+		reservation = new MealBreakfastDinner(reservation, numberOfPeople, numberOfDays);
+		
+		return this;
+	}
+	
+	public ReservationBuilder withGastronomicSupper(int numberOfPeople, int numberOfDays){
+		reservation = new MealGastronomicSupper(reservation, numberOfPeople, numberOfDays);
+		
+		return this;
+	}
+	
 	
 	public ReservationBuilder withCleaningService(int numberOfDays){
 		reservation = new CleaningService(reservation, numberOfDays);
@@ -99,8 +120,20 @@ public class ReservationBuilder {
 		return this;
 	}
 	
+	public ReservationBuilder withBlackBearObservationActivity(int numberOfPeople){
+		reservation = new BlackBearObservationActivity(reservation, numberOfPeople);
+		
+		return this;
+	}
+	
 	public ReservationBuilder withFishingActivity(int numberOfPeople){
 		reservation = new FishingActivity(reservation, numberOfPeople);
+		
+		return this;
+	}
+	
+	public ReservationBuilder withFishSmokingActivity(int numberOfPeople){
+		reservation = new FishSmokingActivity(reservation, numberOfPeople);
 		
 		return this;
 	}
