@@ -6,17 +6,14 @@ public class TransportHydroplane extends TransportOption {
 	public static final double DEFAULT_COST_PER_PERSON = 150.0;
 	private static double unitCostPerPerson = DEFAULT_COST_PER_PERSON;
 	
-	private int nbPeople;
 	
-	public TransportHydroplane(Reservation reservation, int nbPeople) {
-		super(reservation);
-		
-		this.nbPeople = nbPeople;
+	public TransportHydroplane(Reservation reservation, int numberOfPeople) {
+		super(reservation, numberOfPeople);
 	}
 
 	@Override
 	public double getUnitCost() {
-		return TransportHydroplane.unitCostPerPerson * this.nbPeople;
+		return TransportHydroplane.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
 	public static void setUnitCost(double cost){

@@ -21,5 +21,4 @@ public abstract class MealOption extends ReservationOption{
 	public int getNumberOfDays(){
 		return this.numberOfDays;
 	}
-
 }

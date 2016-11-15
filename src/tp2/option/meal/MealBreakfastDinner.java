@@ -5,8 +5,7 @@ import tp2.reservation.Reservation;
 public class MealBreakfastDinner extends MealOption {
 	public final static double DEFAULT_COST_PER_PERSON_PER_BREAKFAST = 10;
 	private static double unitCostPerPersonPerBreakfast = DEFAULT_COST_PER_PERSON_PER_BREAKFAST;
-	
-	
+
 	public MealBreakfastDinner(Reservation reservation, int numberOfPeople, int numberOfDays) {
 		super(reservation, numberOfPeople, numberOfDays);
 	}

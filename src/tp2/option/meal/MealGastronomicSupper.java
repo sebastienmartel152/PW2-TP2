@@ -18,6 +18,7 @@ public class MealGastronomicSupper extends MealOption {
 	
 	public static void setUnitCost(double newCost){
 		MealGastronomicSupper.unitCostPerPersonPerSupper = newCost;
+
 	}
 
 }

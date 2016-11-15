@@ -8,7 +8,7 @@ import tp2.cottage.CottageMock;
 import tp2.reservation.Reservation;
 
 public class MealOptionTest {
-	
+
 	private static final int ANY_NUMBER_OF_PEOPLE = 4;
 	private static final int ANY_NUMBER_OF_DAYS = 3;
 	
@@ -24,6 +24,7 @@ public class MealOptionTest {
 		Reservation cottageWithMeals = new MealOptionMock(cottage, ANY_NUMBER_OF_PEOPLE, ANY_NUMBER_OF_DAYS);
 		
 		double actualPrice = cottageWithMeals.calculateTotalCost();
+
 		
 		// Assert
 		
