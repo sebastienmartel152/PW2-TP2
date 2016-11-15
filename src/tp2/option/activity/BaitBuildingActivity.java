@@ -11,6 +11,7 @@ public class BaitBuildingActivity extends ActivityOption {
 		super(reservation, numberOfPeople);
 	}
 	
+	@Override
 	public double getUnitCost(){
 		return BaitBuildingActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}

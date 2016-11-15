@@ -11,6 +11,7 @@ public class FishingActivity extends ActivityOption {
 		super(reservation, numberOfPeople);
 	}
 	
+	@Override
 	public double getUnitCost(){
 		return FishingActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}

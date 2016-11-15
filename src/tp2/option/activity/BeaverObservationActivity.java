@@ -11,6 +11,7 @@ public class BeaverObservationActivity extends ActivityOption {
 		super(reservation, numberOfPeople);
 	}
 	
+	@Override
 	public double getUnitCost(){
 		return BeaverObservationActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}

@@ -11,6 +11,7 @@ public class TrappingActivity extends ActivityOption {
 		super(reservation, numberOfPeople);
 	}
 	
+	@Override
 	public double getUnitCost(){
 		return TrappingActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
