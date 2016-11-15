@@ -5,6 +5,7 @@ import tp2.reservation.Reservation;
 
 public abstract class ServiceOption extends ReservationOption {
 	
+	private static final int MINIMUM_NB_OF_PEOPLE = 1;
 	private int numberOfDays;
 	
 	public ServiceOption(Reservation reservation, int numberOfDays) {
@@ -17,8 +18,8 @@ public abstract class ServiceOption extends ReservationOption {
 		return this.numberOfDays;
 	}
 	
-	private void validateNumberDays(int nbDays){
-		if(nbDays < 1){
+	private void validateNumberDays(int numberOfDays){
+		if(numberOfDays < MINIMUM_NB_OF_PEOPLE){
 			throw new NumberOfDaysMustBeGreaterThan0();
 		}
 	}

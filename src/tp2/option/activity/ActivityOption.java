@@ -5,6 +5,7 @@ import tp2.reservation.Reservation;
 
 public abstract class ActivityOption extends ReservationOption {
 	
+	private static final int MINIMUM_NB_OF_PEOPLE = 1;
 	private int numberOfPeople;
 
 	public ActivityOption(Reservation reservation, int numberOfPeople) {
@@ -14,7 +15,7 @@ public abstract class ActivityOption extends ReservationOption {
 	}
 
 	private void validateNumberOfPeople(int numberOfPeople) {
-		if(numberOfPeople < 1){
+		if(numberOfPeople < MINIMUM_NB_OF_PEOPLE){
 			throw new NumberOfPeopleIsBelow0Exception();
 		}
 	}

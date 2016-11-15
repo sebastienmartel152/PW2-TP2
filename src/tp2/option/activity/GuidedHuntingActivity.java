@@ -24,6 +24,7 @@ public class GuidedHuntingActivity extends ReservationOption {
 		}
 	}
 
+	@Override
 	public double getUnitCost(){
 		return GuidedHuntingActivity.unitCost;
 	}
