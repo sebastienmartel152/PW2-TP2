@@ -3,6 +3,8 @@ package tp2.reservation;
 import tp2.cottage.FourPersonCottage;
 import tp2.cottage.SixPersonCottage;
 import tp2.cottage.TenPersonCottage;
+import tp2.option.deal.FamilyDeal;
+import tp2.option.deal.FishingDeal;
 import tp2.option.activity.BaitBuildingActivity;
 import tp2.option.activity.BeaverObservationActivity;
 import tp2.option.activity.BlackBearObservationActivity;
@@ -33,8 +35,39 @@ public class ReservationBuilder {
 		addSupper(numberOfPeople, numberOfDays);
 	}
 	
-	public ReservationBuilder(Deal deal, int numberOfPeople, int numberOfDays){
+	public ReservationBuilder(){
 		
+	}
+	
+	public void FamilyDeal(int numberOfDays){
+		int numberOfPeople = 4;
+		
+		reservation = new FourPersonCottage(numberOfPeople);
+		
+		addTransport(TransportType.BOAT, numberOfPeople);
+		addTransport(TransportType.BOAT, numberOfPeople);
+		addSupper(numberOfPeople, numberOfDays);
+		
+		this.withGastronomicSupper(numberOfPeople, numberOfDays);
+		this.withTrappingActivity(numberOfPeople);
+		this.withBeaverObservationActivity(numberOfPeople);
+		this.withFishSmokingActivity(numberOfPeople);
+		
+		reservation = new FamilyDeal(reservation);
+	}
+	
+	public void FishingDeal(CottageType cottageType, int numberOfPeople, int numberOfDays){
+		setBaseCottage(cottageType, numberOfPeople);
+		addTransport(TransportType.BOAT, numberOfPeople);
+		addTransport(TransportType.BOAT, numberOfPeople);
+		addSupper(numberOfPeople, numberOfDays);
+		
+		this.withFishingActivity(numberOfPeople);
+		this.withBaitBuildingActivity(numberOfPeople);
+		this.withGuidedHuntingActivity(numberOfPeople);
+		this.withFishSmokingActivity(numberOfPeople);
+		
+		reservation = new FishingDeal(reservation);
 	}
 	
 	private void setBaseCottage(CottageType cottageType, int numberOfPeople){
@@ -71,6 +104,8 @@ public class ReservationBuilder {
 		reservation = new MealSupper(reservation, numberOfPeople, numberOfDays);
 	}
 	
+	// Repas
+	
 	public ReservationBuilder withBreakfastDinner(int numberOfPeople, int numberOfDays){
 		reservation = new MealBreakfastDinner(reservation, numberOfPeople, numberOfDays);
 		
@@ -82,7 +117,8 @@ public class ReservationBuilder {
 		
 		return this;
 	}
-	
+		
+	// Services
 	
 	public ReservationBuilder withCleaningService(int numberOfDays){
 		reservation = new CleaningService(reservation, numberOfDays);
@@ -107,6 +143,8 @@ public class ReservationBuilder {
 	
 		return this;
 	}
+	
+	// Activités
 	
 	public ReservationBuilder withBaitBuildingActivity(int numberOfPeople){
 		reservation = new BaitBuildingActivity(reservation, numberOfPeople);
@@ -156,7 +194,5 @@ public class ReservationBuilder {
 		return this;
 	}
 	
-	public Reservation build(){
-		return reservation;
-	}
+
 }
