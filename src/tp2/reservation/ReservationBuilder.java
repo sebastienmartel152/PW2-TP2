@@ -28,7 +28,7 @@ public class ReservationBuilder {
 	private Reservation reservation;
 	
 	public ReservationBuilder(CottageType cottageType, int numberOfPeople, int numberOfDays, TransportType transportTo, TransportType transportFrom){
-		setBaseCottage(cottageType, numberOfPeople);
+		setBaseCottage(cottageType, numberOfPeople, numberOfDays);
 		addTransport(transportTo, numberOfPeople);
 		addTransport(transportFrom, numberOfPeople);
 		
@@ -42,7 +42,7 @@ public class ReservationBuilder {
 	public void FamilyDeal(int numberOfDays){
 		int numberOfPeople = 4;
 		
-		reservation = new FourPersonCottage(numberOfPeople);
+		reservation = new FourPersonCottage(numberOfPeople, numberOfDays);
 		
 		addTransport(TransportType.BOAT, numberOfPeople);
 		addTransport(TransportType.BOAT, numberOfPeople);
@@ -57,7 +57,7 @@ public class ReservationBuilder {
 	}
 	
 	public void FishingDeal(CottageType cottageType, int numberOfPeople, int numberOfDays){
-		setBaseCottage(cottageType, numberOfPeople);
+		setBaseCottage(cottageType, numberOfPeople, numberOfDays);
 		addTransport(TransportType.BOAT, numberOfPeople);
 		addTransport(TransportType.BOAT, numberOfPeople);
 		addSupper(numberOfPeople, numberOfDays);
@@ -70,16 +70,16 @@ public class ReservationBuilder {
 		reservation = new FishingDeal(reservation);
 	}
 	
-	private void setBaseCottage(CottageType cottageType, int numberOfPeople){
+	private void setBaseCottage(CottageType cottageType, int numberOfPeople, int numberOfDays){
 		switch(cottageType){
 		case FOURPERSON:
-			reservation = new FourPersonCottage(numberOfPeople);
+			reservation = new FourPersonCottage(numberOfPeople, numberOfDays);
 			break;
 		case SIXPERSON:
-			reservation = new SixPersonCottage(numberOfPeople);
+			reservation = new SixPersonCottage(numberOfPeople, numberOfDays);
 			break;
 		case TENPERSON:
-			reservation = new TenPersonCottage(numberOfPeople);
+			reservation = new TenPersonCottage(numberOfPeople, numberOfDays);
 			break;
 		default:
 			break;
