@@ -16,8 +16,9 @@ public class GuidedHuntingActivityTest {
 	public void GuidedHuntingActivity_ShouldRaiseNumberOfPeopleIsAboveMaximumAllowedPeopleExceptionIfNumberOfPeopleIsAboveMaximumPeopleOf10(){
 		//Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE_IN_COTTAGE);
-		new GuidedHuntingActivity(cottage, GuidedHuntingActivity.MAXIMUM_PEOPLE + 1);
+		
 		//Act
+		new GuidedHuntingActivity(cottage, GuidedHuntingActivity.MAXIMUM_PEOPLE + 1);
 		
 		//Assert
 	}
@@ -26,8 +27,9 @@ public class GuidedHuntingActivityTest {
 	public void GuidedHuntingActivity_ShouldRaiseNumberOfPeopleIsBelowMinimumAllowedPeopleExceptionIfNumberOfPeopleIsBelowMinimumPeopleOf4(){
 		//Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE_IN_COTTAGE);
-		new GuidedHuntingActivity(cottage, GuidedHuntingActivity.MINIMUM_PEOPLE - 1);
+		
 		//Act
+		new GuidedHuntingActivity(cottage, GuidedHuntingActivity.MINIMUM_PEOPLE - 1);
 		
 		//Assert
 	}
@@ -36,12 +38,12 @@ public class GuidedHuntingActivityTest {
 	public void GuidedHuntingActivityDecorator_calculateTotalCost_shouldAddPriceToBaseCottagePrice() {
 		// Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE_IN_COTTAGE);
-		Reservation cottageWithActivity = new GuidedHuntingActivity(cottage, ANY_NUMBER_OF_PEOPLE_IN_COTTAGE);
 		
 		final double EXPECTED_PRICE = cottage.calculateTotalCost() + 
 			GuidedHuntingActivity.DEFAULT_COST;
 		
 		// Act
+		Reservation cottageWithActivity = new GuidedHuntingActivity(cottage, ANY_NUMBER_OF_PEOPLE_IN_COTTAGE);
 		double actualPrice = cottageWithActivity.calculateTotalCost();
 		
 		// Assert

@@ -15,12 +15,12 @@ public class ServiceOptionTest {
 	public void ServiceOptionDecorator_calculateTotalCost_shouldAddPriceToBaseCottagePrice() {
 		// Arrange
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_OCCUPANTS);
-		Reservation cottageWithService = new ServiceOptionMock(cottage, ANY_NUMBER_OF_DAYS);
 		
 		final double EXPECTED_PRICE = cottage.calculateTotalCost() + 
 			ServiceOptionMock.ANY_COST_PER_DAY * ANY_NUMBER_OF_DAYS;
 		
 		// Act
+		Reservation cottageWithService = new ServiceOptionMock(cottage, ANY_NUMBER_OF_DAYS);
 		double actualPrice = cottageWithService.calculateTotalCost();
 		
 		// Assert
