@@ -11,14 +11,19 @@ public class FishingDeal extends ReservationOption {
 	
 	public FishingDeal(Reservation reservation){
 		super(reservation);
+		this.reservation = reservation;
 		
 	}
 
 	@Override
 	public double getUnitCost() {
-		return this.reservation.calculateTotalCost() * (1 - percentageOff); 
+		return 0;
 	}
 	
+	@Override
+	public double calculateTotalCost(){
+		return this.reservation.calculateTotalCost() * (1 - percentageOff); 
+	}
 	public void setPercentageOff(double newPercentage){
 		FishingDeal.percentageOff = newPercentage;
 	}

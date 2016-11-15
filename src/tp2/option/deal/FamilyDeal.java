@@ -11,11 +11,17 @@ public class FamilyDeal extends ReservationOption {
 	
 	public FamilyDeal(Reservation reservation){
 		super(reservation);
+		this.reservation = reservation;
 		
 	}
 
 	@Override
 	public double getUnitCost() {
+		return 0; 
+	}
+	
+	@Override
+	public double calculateTotalCost(){
 		return this.reservation.calculateTotalCost() * (1 - percentageOff); 
 	}
 	
