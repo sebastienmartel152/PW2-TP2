@@ -6,9 +6,9 @@ public class TenPersonCottage extends Cottage {
 	private static double cottagePrice = DEFAULT_COTTAGE_PRICE;
 	private static final int MAXIMUM_OCCUPANTS = 10;
 	
-	public TenPersonCottage(int numberOfOccupants){
+	public TenPersonCottage(int numberOfOccupants, int numberOfDays){
 		
-		super(numberOfOccupants);
+		super(numberOfOccupants, numberOfDays);
 		verifyNumberOfOccupants(numberOfOccupants);
 	}
 
@@ -20,7 +20,7 @@ public class TenPersonCottage extends Cottage {
 
 	@Override
 	public double getUnitCost() {
-		return TenPersonCottage.cottagePrice;
+		return TenPersonCottage.cottagePrice * super.getNumberOfDays();
 	}
 
 	@Override
