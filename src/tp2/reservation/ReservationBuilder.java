@@ -194,5 +194,9 @@ public class ReservationBuilder {
 		return this;
 	}
 	
+	public Reservation build(){
+		return reservation;
+	}
+	
 
 }

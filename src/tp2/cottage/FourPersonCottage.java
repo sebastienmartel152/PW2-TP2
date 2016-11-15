@@ -2,7 +2,7 @@ package tp2.cottage;
 
 public class FourPersonCottage extends Cottage {
 
-	private static final int DEFAULT_COTTAGE_PRICE = 150;
+	public static final int DEFAULT_COTTAGE_PRICE = 150;
 	private static double cottagePrice = DEFAULT_COTTAGE_PRICE;
 	public static final int MAXIMUM_OCCUPANTS = 4;
 	
