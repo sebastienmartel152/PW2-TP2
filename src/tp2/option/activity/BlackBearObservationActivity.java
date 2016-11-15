@@ -11,6 +11,7 @@ public class BlackBearObservationActivity extends ActivityOption {
 		super(reservation, numberOfPeople);
 	}
 	
+	@Override
 	public double getUnitCost(){
 		return BlackBearObservationActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
