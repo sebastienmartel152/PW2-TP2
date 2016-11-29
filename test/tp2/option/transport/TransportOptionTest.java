@@ -16,7 +16,7 @@ public class TransportOptionTest {
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE);
 		Reservation cottageWithTransport = new TransportOptionMock(cottage, ANY_NUMBER_OF_PEOPLE);
 		
-		final double EXPECTED_PRICE = cottage.calculateTotalCost() + TransportOptionMock.ANY_COST * ANY_NUMBER_OF_PEOPLE;
+		final double EXPECTED_PRICE = cottage.calculateTotalCost() + TransportOptionMock.ANY_COST;
 		
 		// Act
 		double actualPrice = cottageWithTransport.calculateTotalCost();

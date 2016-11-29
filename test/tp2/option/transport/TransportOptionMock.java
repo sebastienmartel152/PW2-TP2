@@ -11,7 +11,7 @@ public class TransportOptionMock extends TransportOption {
 
 	@Override
 	public double getOptionCost() {
-		return ANY_COST * super.getNumberOfPeople();
+		return ANY_COST;
 	}
 
 }
