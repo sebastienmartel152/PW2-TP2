@@ -12,7 +12,7 @@ public class MealOptionMock extends MealOption {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return MealOptionMock.unitCostPerPersonPerMeal * super.getNumberOfPeople() * super.getNumberOfDays();
 	}
 	

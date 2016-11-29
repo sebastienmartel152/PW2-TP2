@@ -11,12 +11,16 @@ public class MealBreakfastDinner extends MealOption {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return MealBreakfastDinner.unitCostPerPersonPerBreakfast * super.getNumberOfPeople() * super.getNumberOfDays();
 	}
 	
 	public static void setUnitCost(double newCost){
 		MealBreakfastDinner.unitCostPerPersonPerBreakfast = newCost;
+	}
+	
+	public static double getUnitCost(){
+		return MealBreakfastDinner.unitCostPerPersonPerBreakfast;
 	}
 
 }

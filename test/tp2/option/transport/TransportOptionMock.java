@@ -10,7 +10,7 @@ public class TransportOptionMock extends TransportOption {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return ANY_COST * super.getNumberOfPeople();
 	}
 

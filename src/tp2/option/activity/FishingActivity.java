@@ -12,12 +12,16 @@ public class FishingActivity extends ActivityOption {
 	}
 	
 	@Override
-	public double getUnitCost(){
+	public double getOptionCost(){
 		return FishingActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
 	public static void setUnitCost(double newCost){
 		FishingActivity.unitCostPerPerson = newCost;
+	}
+	
+	public static double getUnitCost(){
+		return FishingActivity.unitCostPerPerson;
 	}
 	
 }
