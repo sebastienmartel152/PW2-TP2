@@ -7,7 +7,7 @@ import org.junit.Test;
 import tp2.cottage.CottageMock;
 import tp2.reservation.Reservation;
 
-public class ActivityMockTest {
+public class ActivityMockTest {  //@SM: ActivityTest, pas ActivityMockTest !!
 	public static final int ANY_NUMBER_OF_PEOPLE = 4;
 	
 	

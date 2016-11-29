@@ -13,7 +13,7 @@ public class ActivityMock extends ActivityOption {
 
 	@Override
 	public double getUnitCost() {
-		return ActivityMock.ANY_COST_PER_PERSON * super.getNumberOfPeople();
+		return ActivityMock.ANY_COST_PER_PERSON * super.getNumberOfPeople();   //@SM: pourquoi 1 tel calcul dans un Mock ??
 	}
 	
 	

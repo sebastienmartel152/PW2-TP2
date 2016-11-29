@@ -2,7 +2,7 @@ package tp2.cottage;
 
 import org.junit.Test;
 
-public class FourPersonCottageTest {
+public class FourPersonCottageTest {   //@SM: pour les cottages: tester le comportement de getUnitCost
 
 	private static final int ANY_NB_OCCUPANTS_ABOVE_MAX_OCCUPANTS = 5;
 	private static final int ANY_NB_DAYS = 3;

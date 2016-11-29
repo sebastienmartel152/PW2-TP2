@@ -11,8 +11,8 @@ public class MealOptionMock extends MealOption {
 		super(reservation, numberOfPeople, numberOfDays);
 	}
 
-	@Override
-	public double getUnitCost() {
+	@Override 
+	public double getUnitCost() {  //@SM: même remarque pour tous les mocks: pas de comportement...
 		return MealOptionMock.unitCostPerPersonPerMeal * super.getNumberOfPeople() * super.getNumberOfDays();
 	}
 	

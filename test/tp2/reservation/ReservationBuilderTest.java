@@ -13,7 +13,8 @@ import tp2.option.activity.*;
 import tp2.option.deal.FamilyDeal;
 import tp2.option.deal.FishingDeal;
 
-public class ReservationBuilderTest {
+public class ReservationBuilderTest {   //@SM: les tests ne devraient pas utiliser les prix par défaut mais bien
+										// le prix statique défini dans chacune des classes(unitCost). Méthode get à définir.
 	
 	private static final int ANY_NUMBER_OF_PEOPLE = 4;
 	private static final int ANY_NUMBER_OF_DAYS = 7;
@@ -38,7 +39,7 @@ public class ReservationBuilderTest {
 	@Test
 	public void FamilyDeal_builder_shouldHaveCorrectPrice(){
 		// Arrange
-		ReservationBuilder FamilyDealBuilder = new ReservationBuilder();
+		ReservationBuilder FamilyDealBuilder = new ReservationBuilder();  //@SM: nommage --> objet: minuscule en 1ère lettre
 		FamilyDealBuilder.FamilyDeal(ANY_NUMBER_OF_DAYS);
 		
 		final double EXPECTED_DEAL_PRICE = (1-FamilyDeal.DEFAULT_PERCENTAGE_OFF) * (

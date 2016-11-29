@@ -28,7 +28,7 @@ public class FourPersonCottage extends Cottage {
 		return this.getUnitCost();
 	}
 	
-	public static void setCottagePrice(double newPrice){
+	public static void setCottagePrice(double newPrice){  //@SM: et la méthode get??  Donc vos tests utilisent DEFAULT_PRICE...
 		FourPersonCottage.cottagePrice = newPrice;
 	}
 }

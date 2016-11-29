@@ -23,7 +23,7 @@ public class MealOptionTest {
 		// Act
 		Reservation cottageWithMeals = new MealOptionMock(cottage, ANY_NUMBER_OF_PEOPLE, ANY_NUMBER_OF_DAYS);
 		
-		double actualPrice = cottageWithMeals.calculateTotalCost();
+		double actualPrice = cottageWithMeals.calculateTotalCost();  //@SM: vous testez le comportement d'1 mock, pas des "vraies" classes de l'application
 
 		
 		// Assert

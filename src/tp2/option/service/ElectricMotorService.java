@@ -15,7 +15,7 @@ public class ElectricMotorService extends ServiceOption{
 		return ElectricMotorService.unitCostPerDay * super.getNumberOfDays();
 	}
 	
-	public static void setUnitCost(double cost){
+	public static void setUnitCost(double cost){  //@SM: nom de la méthode!! Vos méthode getUnitCost et setUnitCost ne travaillent pas sur la même propriété. Ne devraient pas s'appeler parei...
 		ElectricMotorService.unitCostPerDay = cost;
 	}
 }

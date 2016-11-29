@@ -15,7 +15,7 @@ public class MealSupper extends MealOption {
 		return MealSupper.unitCostPerPerson * super.getNumberOfPeople() * super.getNumberOfDays();
 	}
 	
-	public static void setUnitCost(double newCost){
+	public static void setUnitCost(double newCost){   //@manque la méthode get...  Voir les tests.
 		MealSupper.unitCostPerPerson = newCost;
 	}
 

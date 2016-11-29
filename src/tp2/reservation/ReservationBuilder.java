@@ -35,11 +35,12 @@ public class ReservationBuilder {
 		addSupper(numberOfPeople, numberOfDays);
 	}
 	
-	public ReservationBuilder(){
+	public ReservationBuilder(){  //@SM`: pourquoi un constructeur sans paramètres? À supprimer
 		
 	}
 	
-	public void FamilyDeal(int numberOfDays){
+	public void FamilyDeal(int numberOfDays){  // @SM: je n'aime pas  ce raccourci: pour créer un forfait, il faut donc d'abord créer un builder (avce des paramètres...),
+												// puis appeler cette méthode avant toutes les autres. Pas "safe"...
 		int numberOfPeople = 4;
 		
 		reservation = new FourPersonCottage(numberOfPeople, numberOfDays);
@@ -104,12 +105,15 @@ public class ReservationBuilder {
 		reservation = new MealSupper(reservation, numberOfPeople, numberOfDays);
 	}
 	
+	//@SM: dans les méthodes suivantes, plusieurs paramètres ne devraient pas être répétés car sont spécifiés à la création du builder...
+	//De plus, vous ne faites aucune validation...
+	
 	// Repas
 	
-	public ReservationBuilder withBreakfastDinner(int numberOfPeople, int numberOfDays){
+	public ReservationBuilder withBreakfastDinner(int numberOfPeople, int numberOfDays){  
 		reservation = new MealBreakfastDinner(reservation, numberOfPeople, numberOfDays);
 		
-		return this;
+		return this;  //@SM: bien, implémentation intéressante
 	}
 	
 	public ReservationBuilder withGastronomicSupper(int numberOfPeople, int numberOfDays){
