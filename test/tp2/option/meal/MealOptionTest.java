@@ -19,7 +19,7 @@ public class MealOptionTest {
 		
 		
 		final double EXPECTED_PRICE = cottage.calculateTotalCost() + 
-				MealOptionMock.ANY_COST_PER_MEAL_PER_PERSON * ANY_NUMBER_OF_PEOPLE * ANY_NUMBER_OF_DAYS;
+				MealOptionMock.ANY_COST;
 		// Act
 		Reservation cottageWithMeals = new MealOptionMock(cottage, ANY_NUMBER_OF_PEOPLE, ANY_NUMBER_OF_DAYS);
 		
