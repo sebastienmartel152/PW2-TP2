@@ -12,7 +12,7 @@ public class TransportHydroplane extends TransportOption {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return TransportHydroplane.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
@@ -20,4 +20,8 @@ public class TransportHydroplane extends TransportOption {
 		TransportHydroplane.unitCostPerPerson = cost;
 	}
 
+	public static double getUnitCost(){
+		return TransportHydroplane.unitCostPerPerson;
+	}
+	
 }

@@ -12,7 +12,7 @@ public class BlackBearObservationActivity extends ActivityOption {
 	}
 	
 	@Override
-	public double getUnitCost(){
+	public double getOptionCost(){
 		return BlackBearObservationActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
@@ -20,4 +20,7 @@ public class BlackBearObservationActivity extends ActivityOption {
 		BlackBearObservationActivity.unitCostPerPerson = newCost;
 	}
 	
+	public static double getUnitCost(){
+		return BlackBearObservationActivity.unitCostPerPerson;
+	}
 }

@@ -11,6 +11,6 @@ public abstract class ReservationOption implements Reservation{
 	
 	@Override
 	public double calculateTotalCost(){
-		return this.currentReservation.calculateTotalCost() + this.getUnitCost();
+		return this.currentReservation.calculateTotalCost() + this.getOptionCost();
 	}
 }

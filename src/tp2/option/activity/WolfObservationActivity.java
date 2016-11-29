@@ -12,12 +12,16 @@ public class WolfObservationActivity extends ActivityOption {
 	}
 	
 	@Override
-	public double getUnitCost(){
+	public double getOptionCost(){
 		return WolfObservationActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
 	public static void setUnitCost(double newCost){
 		WolfObservationActivity.unitCostPerPerson = newCost;
+	}
+	
+	public static double getUnitCost(){
+		return WolfObservationActivity.unitCostPerPerson;
 	}
 	
 }

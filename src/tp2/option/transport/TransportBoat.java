@@ -11,7 +11,7 @@ public class TransportBoat extends TransportOption {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return TransportBoat.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	
@@ -19,4 +19,8 @@ public class TransportBoat extends TransportOption {
 		TransportBoat.unitCostPerPerson = cost;
 	}
 
+	public static double getUnitCost(){
+		return TransportBoat.unitCostPerPerson;
+	}
+	
 }

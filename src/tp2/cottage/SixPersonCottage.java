@@ -18,16 +18,20 @@ public class SixPersonCottage extends Cottage {
 	}
 
 	@Override
-	public double getUnitCost() {
+	public double getOptionCost() {
 		return SixPersonCottage.cottagePrice * super.getNumberOfDays();
 	}
 
 	@Override
 	public double calculateTotalCost(){
-		return this.getUnitCost();
+		return this.getOptionCost();
 	}
 	
 	public static void setCottagePrice(double newPrice){
 		SixPersonCottage.cottagePrice = newPrice;
+	}
+
+	public static double getCottagePrice(){
+		return SixPersonCottage.cottagePrice;
 	}
 }

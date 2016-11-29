@@ -7,7 +7,7 @@ import org.junit.Test;
 import tp2.cottage.CottageMock;
 import tp2.reservation.Reservation;
 
-public class ActivityMockTest {
+public class ActivityTest {
 	public static final int ANY_NUMBER_OF_PEOPLE = 4;
 	
 	
@@ -17,10 +17,10 @@ public class ActivityMockTest {
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE);
 		
 		final double EXPECTED_PRICE = cottage.calculateTotalCost() + 
-			ActivityMock.ANY_COST_PER_PERSON * ANY_NUMBER_OF_PEOPLE;
+			ActivityOptionMock.ANY_COST;
 		
 		// Act
-		Reservation cottageWithActivity = new ActivityMock(cottage, ANY_NUMBER_OF_PEOPLE);
+		Reservation cottageWithActivity = new ActivityOptionMock(cottage, ANY_NUMBER_OF_PEOPLE);
 		double actualPrice = cottageWithActivity.calculateTotalCost();
 		
 		// Assert
@@ -34,7 +34,7 @@ public class ActivityMockTest {
 		Reservation cottage = new CottageMock(ANY_NUMBER_OF_PEOPLE);
 		
 		// Act & Assert
-		new ActivityMock(cottage, nbPeople);
+		new ActivityOptionMock(cottage, nbPeople);
 	}
 
 }
