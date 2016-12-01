@@ -5,10 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import tp2.cottage.FourPersonCottage;
-import tp2.option.meal.*;
-import tp2.option.transport.*;
-import tp2.option.activity.*;
+import tp3.model.cottage.FourPersonCottage;
+import tp3.model.option.activity.*;
+import tp3.model.option.meal.*;
+import tp3.model.option.transport.*;
+import tp3.model.reservation.CottageType;
+import tp3.model.reservation.Reservation;
+import tp3.model.reservation.ReservationBuilder;
+import tp3.model.reservation.TransportType;
 
 public class ReservationBuilderTest {
 	

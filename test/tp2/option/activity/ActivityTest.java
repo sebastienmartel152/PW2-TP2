@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import tp2.cottage.CottageMock;
-import tp2.reservation.Reservation;
+import tp3.model.option.activity.NumberOfPeopleIsBelow0Exception;
+import tp3.model.reservation.Reservation;
 
 public class ActivityTest {
 	public static final int ANY_NUMBER_OF_PEOPLE = 4;

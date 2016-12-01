@@ -1,6 +1,6 @@
-package tp2.option.transport;
+package tp3.model.option.transport;
 
-import tp2.reservation.Reservation;
+import tp3.model.reservation.Reservation;
 
 public class TransportHydroplane extends TransportOption {
 	public static final double DEFAULT_COST_PER_PERSON = 150.0;

@@ -1,6 +1,7 @@
 package tp2.option.activity;
 
-import tp2.reservation.Reservation;
+import tp3.model.option.activity.ActivityOption;
+import tp3.model.reservation.Reservation;
 
 public class ActivityOptionMock extends ActivityOption {
 	

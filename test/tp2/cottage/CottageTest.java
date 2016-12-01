@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import tp3.model.cottage.Cottage;
+
 public class CottageTest {
 
 	private static final int ANY_NUMBER_OF_OCCUPANTS = 3;

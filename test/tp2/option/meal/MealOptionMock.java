@@ -1,6 +1,7 @@
 package tp2.option.meal;
 
-import tp2.reservation.Reservation;
+import tp3.model.option.meal.MealOption;
+import tp3.model.reservation.Reservation;
 
 public class MealOptionMock extends MealOption {
 	public final static double ANY_COST = 15;

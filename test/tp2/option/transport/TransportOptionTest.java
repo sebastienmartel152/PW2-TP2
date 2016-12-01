@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import tp2.cottage.CottageMock;
-import tp2.reservation.Reservation;
+import tp3.model.reservation.Reservation;
 
 public class TransportOptionTest {
 	private static final int ANY_NUMBER_OF_PEOPLE = 3;

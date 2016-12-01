@@ -1,6 +1,6 @@
-package tp2.option;
+package tp3.model.option;
 
-import tp2.reservation.Reservation;
+import tp3.model.reservation.Reservation;
 
 public abstract class ReservationOption implements Reservation{
 	private Reservation currentReservation;

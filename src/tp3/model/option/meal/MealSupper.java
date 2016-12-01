@@ -1,6 +1,6 @@
-package tp2.option.meal;
+package tp3.model.option.meal;
 
-import tp2.reservation.Reservation;
+import tp3.model.reservation.Reservation;
 
 public class MealSupper extends MealOption {
 	public final static double DEFAULT_COST_PER_PERSON_PER_SUPPER = 18;

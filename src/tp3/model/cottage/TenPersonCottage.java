@@ -1,12 +1,12 @@
-package tp2.cottage;
+package tp3.model.cottage;
 
-public class FourPersonCottage extends Cottage {
+public class TenPersonCottage extends Cottage {
 
-	public static final int DEFAULT_COTTAGE_PRICE = 150;
+	public static final double DEFAULT_COTTAGE_PRICE = 300;
 	private static double cottagePrice = DEFAULT_COTTAGE_PRICE;
-	public static final int MAXIMUM_OCCUPANTS = 4;
+	public static final int MAXIMUM_OCCUPANTS = 10;
 	
-	public FourPersonCottage(int numberOfOccupants, int numberOfDays){
+	public TenPersonCottage(int numberOfOccupants, int numberOfDays){
 		
 		super(numberOfOccupants, numberOfDays);
 		verifyNumberOfOccupants(numberOfOccupants);
@@ -20,7 +20,7 @@ public class FourPersonCottage extends Cottage {
 
 	@Override
 	public double getOptionCost() {
-		return FourPersonCottage.cottagePrice * super.getNumberOfDays();
+		return TenPersonCottage.cottagePrice * super.getNumberOfDays();
 	}
 
 	@Override
@@ -29,11 +29,10 @@ public class FourPersonCottage extends Cottage {
 	}
 	
 	public static void setCottagePrice(double newPrice){
-		FourPersonCottage.cottagePrice = newPrice;
+		TenPersonCottage.cottagePrice = newPrice;
 	}
 	
 	public static double getCottagePrice(){
-		return FourPersonCottage.cottagePrice;
+		return TenPersonCottage.cottagePrice;
 	}
-	
 }
