@@ -1,10 +1,10 @@
-package tp2.option.activity;
+package tp3.model.option.activity;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import tp2.cottage.CottageMock;
+import tp3.model.cottage.CottageMock;
 import tp3.model.option.activity.NumberOfPeopleIsBelow0Exception;
 import tp3.model.reservation.Reservation;
 

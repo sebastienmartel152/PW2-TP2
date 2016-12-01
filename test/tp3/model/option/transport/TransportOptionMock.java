@@ -1,4 +1,4 @@
-package tp2.option.transport;
+package tp3.model.option.transport;
 
 import tp3.model.option.transport.TransportOption;
 import tp3.model.reservation.Reservation;

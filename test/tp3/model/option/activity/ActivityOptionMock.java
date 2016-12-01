@@ -1,4 +1,4 @@
-package tp2.option.activity;
+package tp3.model.option.activity;
 
 import tp3.model.option.activity.ActivityOption;
 import tp3.model.reservation.Reservation;

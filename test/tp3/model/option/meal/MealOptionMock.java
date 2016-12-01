@@ -1,4 +1,4 @@
-package tp2.option.meal;
+package tp3.model.option.meal;
 
 import tp3.model.option.meal.MealOption;
 import tp3.model.reservation.Reservation;
