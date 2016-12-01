@@ -1,4 +1,4 @@
-package tp2.cottage;
+package tp3.model.cottage;
 
 import org.junit.Test;
 

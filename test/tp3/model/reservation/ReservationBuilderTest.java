@@ -1,4 +1,4 @@
-package tp2.reservation;
+package tp3.model.reservation;
 
 import static org.junit.Assert.*;
 
