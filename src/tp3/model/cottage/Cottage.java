@@ -1,5 +1,5 @@
-package tp2.cottage;
-import tp2.reservation.*;
+package tp3.model.cottage;
+import tp3.model.reservation.*;
 
 public abstract class Cottage implements Reservation {
 	

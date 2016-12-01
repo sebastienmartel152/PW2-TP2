@@ -1,7 +1,7 @@
-package tp2.option.activity;
+package tp3.model.option.activity;
 
-import tp2.option.ReservationOption;
-import tp2.reservation.Reservation;
+import tp3.model.option.ReservationOption;
+import tp3.model.reservation.Reservation;
 
 public abstract class ActivityOption extends ReservationOption {
 	

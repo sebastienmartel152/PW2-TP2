@@ -1,7 +1,7 @@
-package tp2.option.meal;
+package tp3.model.option.meal;
 
-import tp2.option.ReservationOption;
-import tp2.reservation.Reservation;
+import tp3.model.option.ReservationOption;
+import tp3.model.reservation.Reservation;
 
 public abstract class MealOption extends ReservationOption{
 	

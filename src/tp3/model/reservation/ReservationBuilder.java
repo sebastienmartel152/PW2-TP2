@@ -1,16 +1,16 @@
-package tp2.reservation;
+package tp3.model.reservation;
 
-import tp2.cottage.FourPersonCottage;
-import tp2.cottage.SixPersonCottage;
-import tp2.cottage.TenPersonCottage;
-import tp2.option.activity.BlackBearObservationActivity;
-import tp2.option.activity.FishingActivity;
-import tp2.option.activity.WolfObservationActivity;
-import tp2.option.meal.MealBreakfastDinner;
-import tp2.option.meal.MealGastronomicSupper;
-import tp2.option.meal.MealSupper;
-import tp2.option.transport.TransportBoat;
-import tp2.option.transport.TransportHydroplane;
+import tp3.model.cottage.FourPersonCottage;
+import tp3.model.cottage.SixPersonCottage;
+import tp3.model.cottage.TenPersonCottage;
+import tp3.model.option.activity.BlackBearObservationActivity;
+import tp3.model.option.activity.FishingActivity;
+import tp3.model.option.activity.WolfObservationActivity;
+import tp3.model.option.meal.MealBreakfastDinner;
+import tp3.model.option.meal.MealGastronomicSupper;
+import tp3.model.option.meal.MealSupper;
+import tp3.model.option.transport.TransportBoat;
+import tp3.model.option.transport.TransportHydroplane;
 
 public class ReservationBuilder {
 	
