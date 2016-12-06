@@ -29,22 +29,24 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	
 	private JPanel centralPanel;
 	
-	public ReservationMainView(ReservationController reservationController){
+	public ReservationMainView(ReservationController reservationController, JPanel centralPanel){
 		super();
+		this.centralPanel = centralPanel;
+		this.reservationController = reservationController;
+		
 		this.initialize();
 		this.setUpComponents();
-		
-		this.reservationController = reservationController;
 	}
 	
 	private void initialize() {
 		this.setTitle(ReservationMainView.VIEW_TITLE);
 		this.setLocation(ReservationMainView.DEFAULT_LOCATION);
 		this.setSize(ReservationMainView.DEFAULT_SIZE);
-		
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	private void setUpComponents() {
+
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
@@ -56,6 +58,13 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		buttonPanel.add(nextButton, BorderLayout.EAST);
 	}
 	
+	public void setPanel(JPanel newPanel){
+		this.centralPanel.setVisible(false);
+		
+		this.add(newPanel);
+		this.centralPanel = newPanel;
+		this.centralPanel.setVisible(true);
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -64,7 +73,6 @@ public class ReservationMainView extends JFrame implements ActionListener {
 			this.reservationController.displayNextPanel();
 			break;
 		}
-		
 	}
 	
 	
