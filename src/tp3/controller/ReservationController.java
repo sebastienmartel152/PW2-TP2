@@ -2,6 +2,7 @@ package tp3.controller;
 
 import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
+import tp3.view.DTO.DTOActivities;
 import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
@@ -47,6 +48,19 @@ public class ReservationController {
 		this.reservationMainView.setPanel(activityPanel);
 	}
 	
+	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
+		if(activitiesInfo.blackBearObservation){
+			this.reservationBuilder.withBlackBearObservationActivity();
+		}
+		
+		if(activitiesInfo.flyFishing){
+			this.reservationBuilder.withFishingActivity();
+		}
+		
+		if(activitiesInfo.wolfObservation){
+			this.reservationBuilder.withWolfObservationActivity();
+		}
+	}
 	
 	
 }
