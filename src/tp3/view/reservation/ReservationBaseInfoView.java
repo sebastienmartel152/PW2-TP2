@@ -23,13 +23,13 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 	
 	// Textes des labels du formulaire
 	
-	public static final String COTTAGE_TYPE_TEXT = "Type de chalet";
-	public static final String NUMBER_OF_PEOPLE_TEXT = "Nombre de personnes";
-	public static final String NUMBER_OF_NIGHTS_TEXT = "Nombre de nuits";
-	public static final String TRANSPORT_TYPE_TO_TEXT = "Type de transport (allé)";
-	public static final String TRANSPORT_TYPE_BACK_TEXT = "Type de transport (retour)";
-	public static final String BREAKFAST_OPTION_TEXT = "Option déjeûner/dîner";
-	public static final String GASTRONOMIC_SUPPER_OPTION_TEXT = "Option souper gastronomic";
+	private static final String COTTAGE_TYPE_TEXT = "Type de chalet";
+	private static final String NUMBER_OF_PEOPLE_TEXT = "Nombre de personnes";
+	private static final String NUMBER_OF_NIGHTS_TEXT = "Nombre de nuits";
+	private static final String TRANSPORT_TYPE_TO_TEXT = "Type de transport (allé)";
+	private static final String TRANSPORT_TYPE_BACK_TEXT = "Type de transport (retour)";
+	private static final String BREAKFAST_OPTION_TEXT = "Option déjeûner/dîner";
+	private static final String GASTRONOMIC_SUPPER_OPTION_TEXT = "Option souper gastronomic";
 
 	private static final String COTTAGE_TYPE_SELECTED = "COTTAGE_TYPE_SELECTED";
 	
