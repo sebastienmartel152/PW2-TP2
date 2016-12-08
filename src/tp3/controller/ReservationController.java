@@ -1,5 +1,6 @@
 package tp3.controller;
 
+import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.reservation.ReservationBaseInfoView;
@@ -9,6 +10,7 @@ import tp3.view.reservation.ReservationView;
 public class ReservationController {
 	
 	private ReservationRepository repository;
+	private ReservationBuilder reservationBuilder;
 	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
@@ -22,8 +24,19 @@ public class ReservationController {
 		reservationMainView.setVisible(true);
 	}
 
-	public void baseInfo(DTOBaseInfo baseInfo) {
+	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
+		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
+				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
 		
+		if(baseInfo.breakfastDinnerOption){
+			this.reservationBuilder.withBreakfastDinner();
+		}
+		
+		if(baseInfo.gastronomicSupperOption){
+			this.reservationBuilder.withGastronomicSupper();
+		}
 	}
+	
+	
 	
 }
