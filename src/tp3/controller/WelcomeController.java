@@ -7,10 +7,12 @@ public class WelcomeController {
 	
 	private ReservationRepository repository;
 	private ReservationController reservationController;
+	private AdminController adminController;
 	
 	public WelcomeController(ReservationRepository repository) {
 		this.repository = repository;
 		this.reservationController = new ReservationController(this.repository);
+		this.adminController = new AdminController(this.repository);
 	}
 	
 	public void startApplication(){
@@ -19,7 +21,7 @@ public class WelcomeController {
 	}
 	
 	public void showAdminView() {
-		
+		this.adminController.displayWindow();
 		
 	}
 
