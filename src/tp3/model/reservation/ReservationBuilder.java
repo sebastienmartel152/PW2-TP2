@@ -18,16 +18,15 @@ public class ReservationBuilder {
 	private int numberOfPeople;
 	private int numberOfDays;
 	
-	public ReservationBuilder(CottageType cottageType, int numberOfPeople, int numberOfDays, TransportType transportTo, TransportType transportFrom){
+	public ReservationBuilder(CottageType cottageType, int numberOfPeople, int numberOfDays, TransportType transportTo, TransportType transportBack){
 		this.numberOfDays = numberOfDays;
 		this.numberOfPeople = numberOfPeople;
 		
 		setBaseCottage(cottageType);
 		addTransport(transportTo);
-		addTransport(transportFrom);
+		addTransport(transportBack);
 		
-		addSupper(
-				);
+		addSupper();
 	
 	}
 	

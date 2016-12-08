@@ -146,7 +146,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 	@Override
 	public void sendInformation(){
 		if(validateInputs()){
-			this.reservationController.baseInfo(getBaseInfoDTO());
+			this.reservationController.receiveBaseInfo(getBaseInfoDTO());
 		}
 	}
 }
