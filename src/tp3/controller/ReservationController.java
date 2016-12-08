@@ -4,14 +4,13 @@ import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.reservation.ReservationBaseInfoView;
 import tp3.view.reservation.ReservationMainView;
-import tp3.view.reservation.ReservationView;
 
 public class ReservationController {
 	
 	private ReservationRepository repository;
 	
 	private ReservationMainView reservationMainView;
-	private ReservationView baseInfoView;
+	private ReservationBaseInfoView baseInfoView;
 	
 	private int stepNumber = 0;
 	

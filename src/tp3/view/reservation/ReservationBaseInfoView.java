@@ -11,6 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -120,8 +121,18 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		}
 	}
 	
-	public void validateInputs(){
+	@Override
+	public boolean validateInputs(){
+		boolean inputsAreCorrect = true;
 		
+		try{
+			Integer.parseInt(this.numberOfNightsInput.getText());
+		}catch(NumberFormatException e){
+			inputsAreCorrect = false;
+			JOptionPane.showMessageDialog(this, "Veuillez entrer un nombre!");
+		}
+		
+		return inputsAreCorrect;
 	}
 	
 	public DTOBaseInfo getInformation(){
