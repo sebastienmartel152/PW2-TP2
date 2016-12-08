@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,9 +17,10 @@ import javax.swing.JTextField;
 import tp3.controller.ReservationController;
 import tp3.model.reservation.CottageType;
 import tp3.model.reservation.TransportType;
+import tp3.view.DTO.DTOBaseInfo;
 
 @SuppressWarnings("serial")
-public class ReservationBaseInfoView extends JPanel implements ActionListener {
+public class ReservationBaseInfoView extends ReservationView implements ActionListener {
 	
 	private ReservationController reservationController;
 	
@@ -65,6 +68,7 @@ public class ReservationBaseInfoView extends JPanel implements ActionListener {
 		cottageTypeCombo = new JComboBox<CottageType>(CottageType.values());
 		numberOfPeopleCombo = new JComboBox<Integer>();
 		numberOfNightsInput = new JTextField("1");
+		
 		transportTypeToCombo = new JComboBox<TransportType>(TransportType.values());
 		transportTypeBackCombo = new JComboBox<TransportType>(TransportType.values());
 		breakfastDinnerCheckBox = new JCheckBox();
@@ -114,7 +118,24 @@ public class ReservationBaseInfoView extends JPanel implements ActionListener {
 		for(int i=1;i<=newMax;i++){
 			this.numberOfPeopleCombo.addItem(i);
 		}
+	}
+	
+	public void validateInputs(){
 		
 	}
 	
+	public DTOBaseInfo getInformation(){
+	
+		CottageType cottageType = (CottageType) this.cottageTypeCombo.getSelectedItem();
+		TransportType transportTypeTo = (TransportType) this.transportTypeToCombo.getSelectedItem();
+		TransportType transportTypeBack = (TransportType) this.transportTypeBackCombo.getSelectedItem();
+		int numberOfPeople = this.numberOfPeopleCombo.getSelectedIndex();
+		int numberOfNights = Integer.parseInt(this.numberOfNightsInput.getText());
+		boolean breakfastDinnerOption = this.breakfastDinnerCheckBox.isSelected();
+		boolean gastronomicSupperOption = this.gastronomicSupperCheckBox.isSelected();
+		
+		return new DTOBaseInfo(cottageType, numberOfPeople, numberOfNights, 
+				transportTypeTo, transportTypeBack, breakfastDinnerOption, gastronomicSupperOption);
+		
+	}
 }
