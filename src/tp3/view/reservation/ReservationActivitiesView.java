@@ -58,9 +58,10 @@ public class ReservationActivitiesView extends ReservationView {
 	
 	@Override
 	public void sendInformation() {
-		DTOActivities = new DTOActivities(this.flyFishingActivityCheckbox.isSelected(),
+		DTOActivities DTOActivities = new DTOActivities(this.flyFishingActivityCheckbox.isSelected(),
 				this.blackBearActivityCheckbox.isSelected(), this.wolfObservationActivityCheckbox.isSelected());
 		
+		this.reservationController.receiveActivitiesInfo(DTOActivities);
 	}
 
 }
