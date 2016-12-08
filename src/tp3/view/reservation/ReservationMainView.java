@@ -27,9 +27,9 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	
 	private ReservationController reservationController;
 	
-	private JPanel centralPanel;
+	private ReservationView centralPanel;
 	
-	public ReservationMainView(ReservationController reservationController, JPanel centralPanel){
+	public ReservationMainView(ReservationController reservationController, ReservationView centralPanel){
 		super();
 		this.centralPanel = centralPanel;
 		this.reservationController = reservationController;
@@ -58,7 +58,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		buttonPanel.add(nextButton, BorderLayout.EAST);
 	}
 	
-	public void setPanel(JPanel newPanel){
+	public void setPanel(ReservationView newPanel){
 		this.centralPanel.setVisible(false);
 		
 		this.add(newPanel);
@@ -70,7 +70,9 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()){
 		case ACTION_NEXT:
-			this.reservationController.displayNextPanel();
+			if(this.centralPanel.validateInputs()){
+				this.reservationController.displayNextPanel();
+			}
 			break;
 		}
 	}
