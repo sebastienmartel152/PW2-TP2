@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import tp3.controller.ReservationController;
 
 @SuppressWarnings("serial")
 public class ReservationMainView extends JFrame implements ActionListener {
@@ -25,14 +24,12 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	private static final Point DEFAULT_LOCATION = new Point(200, 30);
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
-	private ReservationController reservationController;
-	
+
 	private ReservationView centralPanel;
 	
-	public ReservationMainView(ReservationController reservationController, ReservationView centralPanel){
+	public ReservationMainView(ReservationView firstPanel){
 		super();
-		this.centralPanel = centralPanel;
-		this.reservationController = reservationController;
+		this.centralPanel = firstPanel;
 		
 		this.initialize();
 		this.setUpComponents();
@@ -46,7 +43,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	}
 
 	private void setUpComponents() {
-
+		this.add(this.centralPanel);
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
@@ -62,6 +59,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		this.centralPanel.setVisible(false);
 		
 		this.add(newPanel);
+		
 		this.centralPanel = newPanel;
 		this.centralPanel.setVisible(true);
 	}
@@ -70,9 +68,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()){
 		case ACTION_NEXT:
-			if(this.centralPanel.validateInputs()){
-				this.reservationController.displayNextPanel();
-			}
+			this.centralPanel.sendInformation();
 			break;
 		}
 	}

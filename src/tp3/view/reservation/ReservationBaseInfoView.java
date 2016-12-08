@@ -4,12 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -121,8 +117,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		}
 	}
 	
-	@Override
-	public boolean validateInputs(){
+	private boolean validateInputs(){
 		boolean inputsAreCorrect = true;
 		
 		try{
@@ -135,8 +130,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		return inputsAreCorrect;
 	}
 	
-	public DTOBaseInfo getInformation(){
-	
+	public DTOBaseInfo getBaseInfoDTO(){
 		CottageType cottageType = (CottageType) this.cottageTypeCombo.getSelectedItem();
 		TransportType transportTypeTo = (TransportType) this.transportTypeToCombo.getSelectedItem();
 		TransportType transportTypeBack = (TransportType) this.transportTypeBackCombo.getSelectedItem();
@@ -147,6 +141,12 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		
 		return new DTOBaseInfo(cottageType, numberOfPeople, numberOfNights, 
 				transportTypeTo, transportTypeBack, breakfastDinnerOption, gastronomicSupperOption);
-		
+	}
+	
+	@Override
+	public void sendInformation(){
+		if(validateInputs()){
+			this.reservationController.baseInfo(getBaseInfoDTO());
+		}
 	}
 }
