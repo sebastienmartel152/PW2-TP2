@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tp3.controller.ReservationController;
+import tp3.view.DTO.DTOActivities;
 
 @SuppressWarnings("serial")
 public class ReservationActivitiesView extends ReservationView {
@@ -57,7 +58,8 @@ public class ReservationActivitiesView extends ReservationView {
 	
 	@Override
 	public void sendInformation() {
-		// TODO Auto-generated method stub
+		DTOActivities = new DTOActivities(this.flyFishingActivityCheckbox.isSelected(),
+				this.blackBearActivityCheckbox.isSelected(), this.wolfObservationActivityCheckbox.isSelected());
 		
 	}
 
