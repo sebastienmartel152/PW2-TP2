@@ -19,6 +19,10 @@ import tp3.view.DTO.DTOBaseInfo;
 @SuppressWarnings("serial")
 public class ReservationBaseInfoView extends ReservationView implements ActionListener {
 	
+	private static final String ERROR_MESSAGE_NB_NIGHTS_INVALID = "Erreur: Le champ \"Nombre de nuits\" doit être un nombre valide.";
+
+	private static final String ERROR_MESSAGE_NB_NIGHTS_BELOW_1 = "Erreur: Le champ \"Nombre de nuits\" doit être supérieur à zéro.";
+
 	private ReservationController reservationController;
 	
 	// Textes des labels du formulaire
@@ -121,10 +125,15 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		boolean inputsAreCorrect = true;
 		
 		try{
-			Integer.parseInt(this.numberOfNightsInput.getText());
+			int nbNights = Integer.parseInt(this.numberOfNightsInput.getText());
+			
+			if(nbNights <= 0){
+				JOptionPane.showMessageDialog(this, ERROR_MESSAGE_NB_NIGHTS_BELOW_1);
+				inputsAreCorrect = false;
+			}
 		}catch(NumberFormatException e){
 			inputsAreCorrect = false;
-			JOptionPane.showMessageDialog(this, "Veuillez entrer un nombre!");
+			JOptionPane.showMessageDialog(this, ERROR_MESSAGE_NB_NIGHTS_INVALID);
 		}
 		
 		return inputsAreCorrect;
