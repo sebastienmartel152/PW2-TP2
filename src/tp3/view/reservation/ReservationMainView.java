@@ -79,12 +79,18 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		}
 	}
 
-	public void setNextButtonEnabled(boolean visible) {
-		this.nextButton.setEnabled(visible);
+	public void disableNextButton() {
+		this.nextButton.setEnabled(false);
 	}
 
 	public void setFinalButton() {
 		this.nextButton.setText(BUTTON_CONFIRM_TEXT);
+		this.nextButton.setEnabled(true);
+	}
+
+	public void removeNextButton() {
+		this.nextButton.setVisible(false);
+		
 	}
 	
 	
