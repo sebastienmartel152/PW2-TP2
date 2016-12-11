@@ -1,10 +1,13 @@
 package tp3.controller;
 
+import java.util.Date;
+
 import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOActivities;
 import tp3.view.DTO.DTOBaseInfo;
+import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
 import tp3.view.reservation.ReservationMainView;
@@ -32,7 +35,7 @@ public class ReservationController {
 
 		this.currentPanel = baseInfoView;
 
-		
+		reservationMainView = new ReservationMainView(this, baseInfoView);
 		reservationMainView.setVisible(true);
 	}
 	
@@ -89,6 +92,12 @@ public class ReservationController {
 		
 		this.reservationMainView.setPanel(confirmationPanel);
 		this.currentPanel = confirmationPanel;
+	}
+
+	public void checkAvailability(DTOSelectedDate selectedDateDTO) {
+		
+		
+		
 	}
 	
 }

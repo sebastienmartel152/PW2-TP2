@@ -1,5 +1,6 @@
 package tp3.view.reservation;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,21 +8,25 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tp3.controller.ReservationController;
+import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.DTO.Month;
 
 @SuppressWarnings("serial")
 public class ReservationVerificationView extends ReservationView implements ActionListener {
 	
+	private static final String CHECK_DISPONIBILITY_LABEL = "Vérifier la disponibilité...";
 	private static final int CURRENT_YEAR = 2016;
 	private static final int MAX_YEAR = 2020;
 
 	private static final String TOTAL_AMOUNT_LABEL_TEXT = "Montant total avant taxes: ";
 	private static final String MONTH_UPDATED = "MONTH_UPDATE";
+	private static final String CHECK_AVAILABILITY_ACTION = "CHECK_AVAILABILITY";
 	
 	private ReservationController reservationController;
 	private double totalCost;
@@ -58,26 +63,33 @@ public class ReservationVerificationView extends ReservationView implements Acti
 	}
 
 	private void setupPanel() {
-		JPanel panel = new JPanel(new GridLayout(0, 2));
+		JPanel topPanel = new JPanel(new BorderLayout());
+		
+		JPanel priceAndDatePanel = new JPanel(new GridLayout(0, 2));
 		JLabel totalCostTextLabel = new JLabel(TOTAL_AMOUNT_LABEL_TEXT);
 		JLabel totalCostLabel = new JLabel(formatPrice(this.totalCost));
 		
-		panel.add(totalCostTextLabel);
-		panel.add(totalCostLabel);
+		priceAndDatePanel.add(totalCostTextLabel);
+		priceAndDatePanel.add(totalCostLabel);
 		
 		JLabel chooseDateLabel = new JLabel("Date d'arrivée : ");
 
-		
-		panel.add(chooseDateLabel);
+		priceAndDatePanel.add(chooseDateLabel);
 		
 		JPanel dateSelectionPanel = new JPanel();
 		dateSelectionPanel.add(dayCombo);
 		dateSelectionPanel.add(monthCombo);
 		dateSelectionPanel.add(yearCombo);
+		priceAndDatePanel.add(dateSelectionPanel);
 		
-		panel.add(dateSelectionPanel);
 		
-		this.add(panel);
+		JButton checkAvailabilityButton = new JButton(CHECK_DISPONIBILITY_LABEL);
+		checkAvailabilityButton.setActionCommand(CHECK_AVAILABILITY_ACTION);
+		
+		topPanel.add(priceAndDatePanel, BorderLayout.NORTH);
+		topPanel.add(checkAvailabilityButton, BorderLayout.CENTER);
+		
+		this.add(topPanel);
 	}
 	
 	
@@ -97,8 +109,22 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		switch(e.getActionCommand()){
 		case MONTH_UPDATED:
 			updateDaysCombo();
+			break;
+		case CHECK_AVAILABILITY_ACTION:
+			checkAvailability();
 		}
 		
+		
+	}
+
+	private void checkAvailability() {
+		int selectedDay = (int) this.dayCombo.getSelectedItem();
+		Month selectedMonth = (Month) this.monthCombo.getSelectedItem();
+		int selectedYear = (int) this.yearCombo.getSelectedItem();
+		
+		DTOSelectedDate selectedDateDTO = new DTOSelectedDate(selectedDay, selectedMonth.getNumericValue(), selectedYear);
+		
+		this.reservationController.checkAvailability(selectedDateDTO);
 	}
 
 	private void updateDaysCombo() {
