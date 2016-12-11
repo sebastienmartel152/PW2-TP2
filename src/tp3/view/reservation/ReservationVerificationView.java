@@ -11,6 +11,8 @@ import tp3.controller.ReservationController;
 public class ReservationVerificationView extends ReservationView {
 	
 
+	private static final String TOTAL_AMOUNT_LABEL_TEXT = "Montant total avant taxes: ";
+	
 	private ReservationController reservationController;
 	private double totalCost;
 	
@@ -24,13 +26,13 @@ public class ReservationVerificationView extends ReservationView {
 		
 	private void setupPanel() {
 		JPanel panel = new JPanel();
-		JLabel totalCostTextLabel = new JLabel("Montant total avant taxes: ");
+		JLabel totalCostTextLabel = new JLabel(TOTAL_AMOUNT_LABEL_TEXT);
 		JLabel totalCostLabel = new JLabel(formatPrice(this.totalCost));
-		
-		
 		
 		panel.add(totalCostTextLabel);
 		panel.add(totalCostLabel);
+		
+		
 		
 		this.add(panel);
 	}
