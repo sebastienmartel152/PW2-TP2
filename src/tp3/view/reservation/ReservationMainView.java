@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import tp3.controller.ReservationController;
+
 
 @SuppressWarnings("serial")
 public class ReservationMainView extends JFrame implements ActionListener {
@@ -26,10 +28,12 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	
 
 	private ReservationView centralPanel;
+	private ReservationController reservationController;
 	
-	public ReservationMainView(ReservationView firstPanel){
+	public ReservationMainView(ReservationController reservationController, ReservationView firstPanel){
 		super();
 		this.centralPanel = firstPanel;
+		this.reservationController = reservationController;
 		
 		this.initialize();
 		this.setUpComponents();
@@ -68,7 +72,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()){
 		case ACTION_NEXT:
-			this.centralPanel.sendInformation();
+			this.reservationController.nextPanel();
 			break;
 		}
 	}

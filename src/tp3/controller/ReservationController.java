@@ -1,5 +1,6 @@
 package tp3.controller;
 
+import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOActivities;
@@ -7,6 +8,7 @@ import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
 import tp3.view.reservation.ReservationMainView;
+import tp3.view.reservation.ReservationVerificationView;
 import tp3.view.reservation.ReservationView;
 
 public class ReservationController {
@@ -14,6 +16,8 @@ public class ReservationController {
 	private ReservationRepository repository;
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
+	private Reservation reservation;
+	private ReservationView currentPanel;
 	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
@@ -22,11 +26,16 @@ public class ReservationController {
 	public void displayWindow(){
 		ReservationView baseInfoView = new ReservationBaseInfoView(this);
 
-		this.reservationMainView = new ReservationMainView(baseInfoView);
+		this.reservationMainView = new ReservationMainView(this, baseInfoView);
+		this.currentPanel = baseInfoView;
 		
 		reservationMainView.setVisible(true);
 	}
-
+	
+	public void nextPanel(){
+		this.currentPanel.sendInformation();
+	}
+	
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
 		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
 				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
@@ -46,6 +55,7 @@ public class ReservationController {
 		ReservationView activityPanel = new ReservationActivitiesView(this);
 		
 		this.reservationMainView.setPanel(activityPanel);
+		this.currentPanel = activityPanel;
 	}
 	
 	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
@@ -60,7 +70,17 @@ public class ReservationController {
 		if(activitiesInfo.wolfObservation){
 			this.reservationBuilder.withWolfObservationActivity();
 		}
+		
+		this.reservation = this.reservationBuilder.build();
+		
+		displayConfirmationPanel();
 	}
 	
+	private void displayConfirmationPanel(){
+		ReservationView confirmationPanel = new ReservationVerificationView(this);
+		
+		this.reservationMainView.setPanel(confirmationPanel);
+		this.currentPanel = confirmationPanel;
+	}
 	
 }
