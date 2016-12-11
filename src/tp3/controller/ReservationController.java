@@ -1,7 +1,6 @@
 package tp3.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import tp3.model.reservation.AvailabilityChecker;
 import tp3.model.reservation.CottageType;
@@ -35,6 +34,7 @@ public class ReservationController {
 	private int numberOfDays;
 	private CottageType cottageType;
 	
+	// Pour création et affichage de la facture
 	private Reservation reservation;
 	private DTOSelectedDate selectedDateDTO;
 	
