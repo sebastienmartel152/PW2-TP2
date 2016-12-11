@@ -27,7 +27,7 @@ public class ReservationBuilder {
 		addTransport(transportBack);
 		
 		addSupper();
-	
+		
 	}
 	
 	private void setBaseCottage(CottageType cottageType){
@@ -56,7 +56,6 @@ public class ReservationBuilder {
 			break;
 		default:
 			break;
-		
 		}
 	}
 	
@@ -81,18 +80,21 @@ public class ReservationBuilder {
 	// Activités
 	
 	public ReservationBuilder withBlackBearObservationActivity(){
+		
 		reservation = new BlackBearObservationActivity(reservation, this.numberOfPeople);
 		
 		return this;
 	}
 	
 	public ReservationBuilder withFishingActivity(){
+		
 		reservation = new FishingActivity(reservation, this.numberOfPeople);
 		
 		return this;
 	}
 	
 	public ReservationBuilder withWolfObservationActivity(){
+		
 		reservation = new WolfObservationActivity(reservation, this.numberOfPeople);
 		
 		return this;

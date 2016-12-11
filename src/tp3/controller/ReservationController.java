@@ -14,6 +14,7 @@ public class ReservationController {
 	private ReservationRepository repository;
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
+	private ReservationView currentPanel;
 	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
@@ -21,12 +22,18 @@ public class ReservationController {
 	
 	public void displayWindow(){
 		ReservationView baseInfoView = new ReservationBaseInfoView(this);
+		this.currentPanel = baseInfoView;
+		
+		this.reservationMainView = new ReservationMainView(this, baseInfoView);
 
-		this.reservationMainView = new ReservationMainView(baseInfoView);
 		
 		reservationMainView.setVisible(true);
 	}
-
+	
+	public void nextButton(){
+		this.currentPanel.sendInformation();
+	}
+	
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
 		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
 				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
@@ -46,9 +53,12 @@ public class ReservationController {
 		ReservationView activityPanel = new ReservationActivitiesView(this);
 		
 		this.reservationMainView.setPanel(activityPanel);
+		
+		this.currentPanel = activityPanel;
 	}
 	
 	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
+		
 		if(activitiesInfo.blackBearObservation){
 			this.reservationBuilder.withBlackBearObservationActivity();
 		}
