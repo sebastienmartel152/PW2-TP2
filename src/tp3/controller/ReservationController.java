@@ -25,6 +25,7 @@ public class ReservationController {
 		this.currentPanel = baseInfoView;
 		
 		this.reservationMainView = new ReservationMainView(this, baseInfoView);
+
 		
 		reservationMainView.setVisible(true);
 	}
