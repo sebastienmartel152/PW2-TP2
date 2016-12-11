@@ -77,7 +77,9 @@ public class ReservationController {
 	}
 	
 	private void displayConfirmationPanel(){
-		ReservationView confirmationPanel = new ReservationVerificationView(this);
+		double totalCost = this.reservation.calculateTotalCost();
+
+		ReservationView confirmationPanel = new ReservationVerificationView(this, totalCost);
 		
 		this.reservationMainView.setPanel(confirmationPanel);
 		this.currentPanel = confirmationPanel;

@@ -143,7 +143,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		CottageType cottageType = (CottageType) this.cottageTypeCombo.getSelectedItem();
 		TransportType transportTypeTo = (TransportType) this.transportTypeToCombo.getSelectedItem();
 		TransportType transportTypeBack = (TransportType) this.transportTypeBackCombo.getSelectedItem();
-		int numberOfPeople = this.numberOfPeopleCombo.getSelectedIndex();
+		int numberOfPeople = this.numberOfPeopleCombo.getSelectedIndex()+1;
 		int numberOfNights = Integer.parseInt(this.numberOfNightsInput.getText());
 		boolean breakfastDinnerOption = this.breakfastDinnerCheckBox.isSelected();
 		boolean gastronomicSupperOption = this.gastronomicSupperCheckBox.isSelected();
