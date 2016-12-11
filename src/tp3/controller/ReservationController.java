@@ -10,6 +10,7 @@ import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOActivities;
 import tp3.view.DTO.DTOBaseInfo;
+import tp3.view.DTO.DTOContactInfo;
 import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
@@ -119,6 +120,17 @@ public class ReservationController {
 	public void setFinalButton() {
 		this.reservationMainView.setFinalButton();
 		this.reservationMainView.setNextButtonEnabled(true);
+		
+	}
+
+	public void receiveContactInfo(DTOContactInfo contactInfoDTO) {
+		/* À faire:
+		 * Créer l'objet Customer à partir des infos du DTO
+		 * Créer l'objet Receipt avec le Customer et la Reservation (propriété this.reservation déjà présente)
+		 * Ajouter la Receipt dans this.repository (qui a été changé en repository de Receipt et non de Reservation
+		 */
+		
+		
 		
 	}
 	

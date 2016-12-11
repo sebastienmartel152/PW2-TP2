@@ -1,14 +1,10 @@
 package tp3.view.reservation;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,15 +12,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import tp3.controller.ReservationController;
+import tp3.view.DTO.DTOContactInfo;
 import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.DTO.Month;
 
 @SuppressWarnings("serial")
 public class ReservationVerificationView extends ReservationView implements ActionListener {
 	
+	private static final String ERROR_MESSAGE_EMAIL_EMPTY = "- Le champ courriel doit être rempli\n";
+	private static final String ERROR_MESSAGE_PHONE_EMPTY = "- Le champ téléphone doit être rempli\n";
+	private static final String ERROR_MESSAGE_ADDRESS_EMPTY = "- Le champ adresse doit être rempli\n";
+	private static final String ERROR_MESSAGE_NAME_EMPTY = "- Le champ nom doit être rempli\n";
+	private static final String ERROR_MESSAGE_DEFAULT = "Veuillez corriger:\n\n";
 	private static final String MONTH_UPDATED = "MONTH_UPDATE";
 	private static final String CHECK_AVAILABILITY_ACTION = "CHECK_AVAILABILITY";
 	
@@ -56,14 +57,10 @@ public class ReservationVerificationView extends ReservationView implements Acti
 	private static final String PHONE_LABEL = "Téléphone: ";
 	private static final String EMAIL_LABEL = "Courriel: ";
 
-	
-	
 	private ReservationController reservationController;
 	private double totalCost;
 	
 
-	
-	
 	public ReservationVerificationView(ReservationController reservationController, double totalCost){
 		super();
 		this.reservationController = reservationController;
@@ -216,7 +213,43 @@ public class ReservationVerificationView extends ReservationView implements Acti
 	
 	@Override
 	public void sendInformation() {
-		// TODO Auto-generated method stub
+		if(validateInputs()){
+			String name = this.nameTextField.getText();
+			String address = this.addressTextField.getText();
+			String phone = this.phoneTextField.getText();
+			String email = this.emailTextField.getText();
+			
+			DTOContactInfo contactInfoDTO = new DTOContactInfo(name, address, phone, email);
+			this.reservationController.receiveContactInfo(contactInfoDTO);
+		}
 		
+	}
+
+	private boolean validateInputs() {
+		boolean inputsAreCorrect = true;
+		String errorMessage = ERROR_MESSAGE_DEFAULT;
+		
+		if(this.nameTextField.getText().equals("")){
+			inputsAreCorrect = false;
+			errorMessage += ERROR_MESSAGE_NAME_EMPTY;
+		}
+		if(this.addressTextField.getText().equals("")){
+			inputsAreCorrect = false;
+			errorMessage += ERROR_MESSAGE_ADDRESS_EMPTY;
+		}
+		if(this.phoneTextField.getText().equals("")){
+			inputsAreCorrect = false;
+			errorMessage += ERROR_MESSAGE_PHONE_EMPTY;
+		}
+		if(this.emailTextField.getText().equals("")){
+			inputsAreCorrect = false;
+			errorMessage += ERROR_MESSAGE_EMAIL_EMPTY;
+		}
+		
+		if(!inputsAreCorrect){
+			JOptionPane.showMessageDialog(this, errorMessage);
+		}
+		
+		return inputsAreCorrect;
 	}
 }

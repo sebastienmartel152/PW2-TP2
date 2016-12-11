@@ -85,7 +85,6 @@ public class ReservationMainView extends JFrame implements ActionListener {
 
 	public void setFinalButton() {
 		this.nextButton.setText(BUTTON_CONFIRM_TEXT);
-		
 	}
 	
 	
