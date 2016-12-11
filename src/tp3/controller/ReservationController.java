@@ -24,13 +24,16 @@ public class ReservationController {
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
 
-	private Reservation reservation;
+	
 
 	private ReservationView currentPanel;
 	
 	// Pour la vérification de disponibilité
 	private int numberOfDays;
 	private CottageType cottageType;
+	
+	private Reservation reservation;
+	private DTOSelectedDate selectedDateDTO;
 	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
@@ -113,6 +116,7 @@ public class ReservationController {
 		boolean isAvailable = checker.checkAvailability(selectedDateDTO.selectedDay, selectedDateDTO.selectedMonth, selectedDateDTO.selectedYear,
 				this.cottageType, this.numberOfDays);
 		
+		this.selectedDateDTO = selectedDateDTO;
 		return isAvailable;
 		
 	}
@@ -125,13 +129,14 @@ public class ReservationController {
 
 	public void receiveContactInfo(DTOContactInfo contactInfoDTO) {
 		/* À faire:
-		 * Créer l'objet Customer à partir des infos du DTO
+		 * Créer l'objet Customer avec les infos du DTO et la date (this.selectedDateDTO)
 		 * Créer l'objet Receipt avec le Customer et la Reservation (propriété this.reservation déjà présente)
 		 * Ajouter la Receipt dans this.repository (qui a été changé en repository de Receipt et non de Reservation
 		 */
 		
 		
-		
 	}
+
+
 	
 }
