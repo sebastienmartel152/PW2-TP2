@@ -52,6 +52,8 @@ public class ReservationController {
 		ReservationView activityPanel = new ReservationActivitiesView(this);
 		
 		this.reservationMainView.setPanel(activityPanel);
+		
+		this.currentPanel = activityPanel;
 	}
 	
 	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
