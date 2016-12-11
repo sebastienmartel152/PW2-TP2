@@ -17,7 +17,8 @@ import tp3.controller.ReservationController;
 @SuppressWarnings("serial")
 public class ReservationMainView extends JFrame implements ActionListener {
 	
-	private static final String BUTTON_NEXT_LABEL = "Suivant";
+	private static final String BUTTON_CONFIRM_TEXT = "Confirmer";
+	private static final String BUTTON_NEXT_TEXT = "Suivant";
 
 	private static final String VIEW_TITLE = "Réservation d'un chalet";
 	
@@ -26,8 +27,10 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	private static final Point DEFAULT_LOCATION = new Point(200, 30);
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
-	private ReservationController reservationController;
 	private ReservationView centralPanel;
+	private ReservationController reservationController;
+	
+	private JButton nextButton;
 	
 	public ReservationMainView(ReservationController reservationController, ReservationView firstPanel){
 		super();
@@ -51,7 +54,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		
-		JButton nextButton = new JButton(BUTTON_NEXT_LABEL);
+		nextButton = new JButton(BUTTON_NEXT_TEXT);
 		nextButton.addActionListener(this);
 		nextButton.setActionCommand(ACTION_NEXT);
 		
@@ -71,9 +74,17 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()){
 		case ACTION_NEXT:
-			this.reservationController.nextButton();
+			this.reservationController.nextPanel();
 			break;
 		}
+	}
+
+	public void setNextButtonEnabled(boolean visible) {
+		this.nextButton.setEnabled(visible);
+	}
+
+	public void setFinalButton() {
+		this.nextButton.setText(BUTTON_CONFIRM_TEXT);
 	}
 	
 	

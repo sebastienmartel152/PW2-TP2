@@ -1,12 +1,21 @@
 package tp3.controller;
 
+import java.util.Date;
+
+import tp3.model.reservation.AvailabilityChecker;
+import tp3.model.reservation.CottageType;
+import tp3.model.reservation.MockAvailabilityChecker;
+import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
 import tp3.view.DTO.DTOActivities;
 import tp3.view.DTO.DTOBaseInfo;
+import tp3.view.DTO.DTOContactInfo;
+import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
 import tp3.view.reservation.ReservationMainView;
+import tp3.view.reservation.ReservationVerificationView;
 import tp3.view.reservation.ReservationView;
 
 public class ReservationController {
@@ -14,7 +23,17 @@ public class ReservationController {
 	private ReservationRepository repository;
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
+
+	
+
 	private ReservationView currentPanel;
+	
+	// Pour la vérification de disponibilité
+	private int numberOfDays;
+	private CottageType cottageType;
+	
+	private Reservation reservation;
+	private DTOSelectedDate selectedDateDTO;
 	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
@@ -24,17 +43,21 @@ public class ReservationController {
 		ReservationView baseInfoView = new ReservationBaseInfoView(this);
 		this.currentPanel = baseInfoView;
 		
-		this.reservationMainView = new ReservationMainView(this, baseInfoView);
 
-		
+		this.currentPanel = baseInfoView;
+
+		reservationMainView = new ReservationMainView(this, baseInfoView);
 		reservationMainView.setVisible(true);
 	}
 	
-	public void nextButton(){
+	public void nextPanel(){
 		this.currentPanel.sendInformation();
 	}
 	
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
+		this.numberOfDays = baseInfo.numberOfNights;
+		this.cottageType = baseInfo.cottageType;
+		
 		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
 				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
 		
@@ -53,7 +76,7 @@ public class ReservationController {
 		ReservationView activityPanel = new ReservationActivitiesView(this);
 		
 		this.reservationMainView.setPanel(activityPanel);
-		
+
 		this.currentPanel = activityPanel;
 	}
 	
@@ -70,7 +93,50 @@ public class ReservationController {
 		if(activitiesInfo.wolfObservation){
 			this.reservationBuilder.withWolfObservationActivity();
 		}
+		
+		this.reservation = this.reservationBuilder.build();
+		
+		displayConfirmationPanel();
 	}
 	
+	private void displayConfirmationPanel(){
+		double totalCost = this.reservation.calculateTotalCost();
+
+		ReservationView confirmationPanel = new ReservationVerificationView(this, totalCost);
+		
+		this.reservationMainView.setPanel(confirmationPanel);
+		this.currentPanel = confirmationPanel;
+		
+		this.reservationMainView.setNextButtonEnabled(false);
+	}
+
+	public boolean checkAvailability(DTOSelectedDate selectedDateDTO) {
+		AvailabilityChecker checker = new MockAvailabilityChecker(MockAvailabilityChecker.TRUE);
+		
+		boolean isAvailable = checker.checkAvailability(selectedDateDTO.selectedDay, selectedDateDTO.selectedMonth, selectedDateDTO.selectedYear,
+				this.cottageType, this.numberOfDays);
+		
+		this.selectedDateDTO = selectedDateDTO;
+		return isAvailable;
+		
+	}
+
+	public void setFinalButton() {
+		this.reservationMainView.setFinalButton();
+		this.reservationMainView.setNextButtonEnabled(true);
+		
+	}
+
+	public void receiveContactInfo(DTOContactInfo contactInfoDTO) {
+		/* À faire:
+		 * Créer l'objet Customer avec les infos du DTO et la date (this.selectedDateDTO)
+		 * Créer l'objet Receipt avec le Customer et la Reservation (propriété this.reservation déjà présente)
+		 * Ajouter la Receipt dans this.repository (qui a été changé en repository de Receipt et non de Reservation
+		 */
+		
+		
+	}
+
+
 	
 }
