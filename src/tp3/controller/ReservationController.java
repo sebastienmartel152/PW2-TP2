@@ -2,6 +2,9 @@ package tp3.controller;
 
 import java.util.Date;
 
+import tp3.model.reservation.AvailabilityChecker;
+import tp3.model.reservation.CottageType;
+import tp3.model.reservation.MockAvailabilityChecker;
 import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
 import tp3.model.reservation.repository.ReservationRepository;
@@ -24,6 +27,10 @@ public class ReservationController {
 
 	private ReservationView currentPanel;
 	
+	// Pour la vérification de disponibilité
+	private int numberOfDays;
+	private CottageType cottageType;
+	
 	public ReservationController(ReservationRepository repository){
 		this.repository = repository;
 	}
@@ -44,6 +51,9 @@ public class ReservationController {
 	}
 	
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
+		this.numberOfDays = baseInfo.numberOfNights;
+		this.cottageType = baseInfo.cottageType;
+		
 		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
 				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
 		
@@ -92,11 +102,17 @@ public class ReservationController {
 		
 		this.reservationMainView.setPanel(confirmationPanel);
 		this.currentPanel = confirmationPanel;
+		
+		this.reservationMainView.disableNextButton();
 	}
 
-	public void checkAvailability(DTOSelectedDate selectedDateDTO) {
+	public boolean checkAvailability(DTOSelectedDate selectedDateDTO) {
+		AvailabilityChecker checker = new MockAvailabilityChecker(MockAvailabilityChecker.TRUE);
 		
+		boolean isAvailable = checker.checkAvailability(selectedDateDTO.selectedDay, selectedDateDTO.selectedMonth, selectedDateDTO.selectedYear,
+				this.cottageType, this.numberOfDays);
 		
+		return isAvailable;
 		
 	}
 	
