@@ -111,5 +111,11 @@ public class ReservationVerificationView extends ReservationView implements Acti
 			dayCombo.addItem(i);
 		}
 		
+		if(selectedMonth.getNumericValue() == 2){
+			int selectedYear = yearCombo.getSelectedIndex();
+			if(selectedYear % 4 == 0){
+				dayCombo.addItem(29);
+			}
+		}
 	}
 }
