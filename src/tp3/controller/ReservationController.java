@@ -103,7 +103,7 @@ public class ReservationController {
 		this.reservationMainView.setPanel(confirmationPanel);
 		this.currentPanel = confirmationPanel;
 		
-		this.reservationMainView.disableNextButton();
+		this.reservationMainView.setNextButtonEnabled(false);
 	}
 
 	public boolean checkAvailability(DTOSelectedDate selectedDateDTO) {
@@ -113,6 +113,12 @@ public class ReservationController {
 				this.cottageType, this.numberOfDays);
 		
 		return isAvailable;
+		
+	}
+
+	public void setFinalButton() {
+		this.reservationMainView.setFinalButton();
+		this.reservationMainView.setNextButtonEnabled(true);
 		
 	}
 	

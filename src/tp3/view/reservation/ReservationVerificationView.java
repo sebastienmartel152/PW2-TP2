@@ -1,6 +1,8 @@
 package tp3.view.reservation;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +13,10 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import tp3.controller.ReservationController;
 import tp3.view.DTO.DTOSelectedDate;
@@ -20,20 +25,43 @@ import tp3.view.DTO.Month;
 @SuppressWarnings("serial")
 public class ReservationVerificationView extends ReservationView implements ActionListener {
 	
-	private static final String CHECK_DISPONIBILITY_LABEL = "Vérifier la disponibilité...";
-	private static final int CURRENT_YEAR = 2016;
-	private static final int MAX_YEAR = 2020;
-
-	private static final String TOTAL_AMOUNT_LABEL_TEXT = "Montant total avant taxes: ";
 	private static final String MONTH_UPDATED = "MONTH_UPDATE";
 	private static final String CHECK_AVAILABILITY_ACTION = "CHECK_AVAILABILITY";
 	
-	private ReservationController reservationController;
-	private double totalCost;
+	// Montant total avant les taxes
+	private static final String TOTAL_AMOUNT_LABEL_TEXT = "Montant total avant taxes: ";
+
+	// Sélection de la date
+	private static final String AVAILABLE_COTTAGE_DIALOG = "Le chalet est disponible! Veuillez entrer les informations nécessaires à la facturation";
+	private static final String UNAVAILABLE_COTTAGE_DIALOG = "Désolé, le chalet sélectionné n'est pas disponible pour cette date.";
+	private static final String CHECK_DISPONIBILITY_LABEL = "Vérifier la disponibilité...";
+	private static final int CURRENT_YEAR = 2016;
+	private static final int MAX_YEAR = 2020;
+	JButton checkAvailabilityButton;
 	
 	private JComboBox<Integer> dayCombo;
 	private JComboBox<Month> monthCombo;
 	private JComboBox<Integer> yearCombo;
+	
+	// Formulaire d'information nécessaire à la facturation
+	JPanel formPanel;
+	
+	private JTextField nameTextField;
+	private JTextField addressTextField;
+	private JTextField phoneTextField;
+	private JTextField emailTextField;
+	
+	private static final String NAME_LABEL = "Nom et prénom: ";
+	private static final String ADDRESS_LABEL = "Addresse: ";
+	private static final String PHONE_LABEL = "Téléphone: ";
+	private static final String EMAIL_LABEL = "Courriel: ";
+
+	
+	
+	private ReservationController reservationController;
+	private double totalCost;
+	
+
 	
 	
 	public ReservationVerificationView(ReservationController reservationController, double totalCost){
@@ -42,6 +70,7 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		this.totalCost = totalCost;
 		setUpComboBoxes();
 		setupPanel();
+		setupContactInfoForm();
 	}
 		
 	private void setUpComboBoxes() {
@@ -83,7 +112,8 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		priceAndDatePanel.add(dateSelectionPanel);
 		
 		
-		JButton checkAvailabilityButton = new JButton(CHECK_DISPONIBILITY_LABEL);
+		checkAvailabilityButton = new JButton(CHECK_DISPONIBILITY_LABEL);
+		checkAvailabilityButton.addActionListener(this);
 		checkAvailabilityButton.setActionCommand(CHECK_AVAILABILITY_ACTION);
 		
 		topPanel.add(priceAndDatePanel, BorderLayout.NORTH);
@@ -92,12 +122,6 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		this.add(topPanel);
 	}
 	
-	
-	@Override
-	public void sendInformation() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	private static String formatPrice(double priceDouble){
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -124,7 +148,51 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		
 		DTOSelectedDate selectedDateDTO = new DTOSelectedDate(selectedDay, selectedMonth.getNumericValue(), selectedYear);
 		
-		this.reservationController.checkAvailability(selectedDateDTO);
+		boolean isAvailable = this.reservationController.checkAvailability(selectedDateDTO);
+		
+		if(isAvailable){
+			JOptionPane.showMessageDialog(this, AVAILABLE_COTTAGE_DIALOG);
+			displayContactInfoForm();
+		}else{
+			JOptionPane.showMessageDialog(this, UNAVAILABLE_COTTAGE_DIALOG);
+		}
+	}
+
+	private void setupContactInfoForm() {
+		formPanel = new JPanel(new GridLayout(0,2));
+
+		JLabel nameLabel = new JLabel(NAME_LABEL);
+		JLabel addressLabel = new JLabel(ADDRESS_LABEL); 
+		JLabel phoneLabel = new JLabel(PHONE_LABEL);
+		JLabel emailLabel = new JLabel(EMAIL_LABEL);
+		
+		nameTextField = new JTextField();
+		addressTextField = new JTextField();
+		phoneTextField = new JTextField();
+		emailTextField = new JTextField();
+		
+		
+		formPanel.add(nameLabel);
+		formPanel.add(nameTextField);
+		formPanel.add(addressLabel);
+		formPanel.add(addressTextField);
+		formPanel.add(phoneLabel);
+		formPanel.add(phoneTextField);
+		formPanel.add(emailLabel);
+		formPanel.add(emailTextField);
+		
+		this.add(formPanel);
+		formPanel.setVisible(false);
+	}
+	
+	private void displayContactInfoForm(){
+		this.checkAvailabilityButton.setEnabled(false);
+		this.monthCombo.setEnabled(false);
+		this.dayCombo.setEnabled(false);
+		this.yearCombo.setEnabled(false);
+		
+		this.formPanel.setVisible(true);
+		this.reservationController.setFinalButton();
 	}
 
 	private void updateDaysCombo() {
@@ -143,5 +211,12 @@ public class ReservationVerificationView extends ReservationView implements Acti
 				dayCombo.addItem(29);
 			}
 		}
+	}
+	
+	
+	@Override
+	public void sendInformation() {
+		// TODO Auto-generated method stub
+		
 	}
 }
