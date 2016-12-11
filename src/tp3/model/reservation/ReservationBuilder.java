@@ -28,7 +28,7 @@ public class ReservationBuilder {
 		addTransport(transportBack);
 		
 		addSupper();
-	
+		
 	}
 	
 	private void setBaseCottage(CottageType cottageType){
@@ -57,7 +57,6 @@ public class ReservationBuilder {
 			break;
 		default:
 			break;
-		
 		}
 	}
 	

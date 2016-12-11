@@ -16,7 +16,9 @@ public class ReservationController {
 	private ReservationRepository repository;
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
+
 	private Reservation reservation;
+
 	private ReservationView currentPanel;
 	
 	public ReservationController(ReservationRepository repository){
@@ -25,9 +27,11 @@ public class ReservationController {
 	
 	public void displayWindow(){
 		ReservationView baseInfoView = new ReservationBaseInfoView(this);
-
-		this.reservationMainView = new ReservationMainView(this, baseInfoView);
 		this.currentPanel = baseInfoView;
+		
+
+		this.currentPanel = baseInfoView;
+
 		
 		reservationMainView.setVisible(true);
 	}
@@ -55,10 +59,12 @@ public class ReservationController {
 		ReservationView activityPanel = new ReservationActivitiesView(this);
 		
 		this.reservationMainView.setPanel(activityPanel);
+
 		this.currentPanel = activityPanel;
 	}
 	
 	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
+		
 		if(activitiesInfo.blackBearObservation){
 			this.reservationBuilder.withBlackBearObservationActivity();
 		}

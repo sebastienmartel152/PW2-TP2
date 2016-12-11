@@ -26,7 +26,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	private static final Point DEFAULT_LOCATION = new Point(200, 30);
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
-
+	private ReservationController reservationController;
 	private ReservationView centralPanel;
 	private ReservationController reservationController;
 	
