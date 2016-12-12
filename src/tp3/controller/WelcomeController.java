@@ -1,16 +1,18 @@
 package tp3.controller;
 
-import tp3.model.reservation.repository.ReservationRepository;
+import tp3.model.reservation.repository.ReceiptRepository;
 import tp3.view.WelcomeView;
 
 public class WelcomeController {
 	
-	private ReservationRepository repository;
+	private ReceiptRepository repository;
 	private ReservationController reservationController;
+	private AdminController adminController;
 	
-	public WelcomeController(ReservationRepository repository) {
+	public WelcomeController(ReceiptRepository repository) {
 		this.repository = repository;
 		this.reservationController = new ReservationController(this.repository);
+		this.adminController = new AdminController(this.repository);
 	}
 	
 	public void startApplication(){
@@ -19,7 +21,7 @@ public class WelcomeController {
 	}
 	
 	public void showAdminView() {
-		
+		this.adminController.displayWindow();
 		
 	}
 
