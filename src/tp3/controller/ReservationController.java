@@ -44,6 +44,7 @@ public class ReservationController {
 	
 	// Pour création et affichage de la facture
 	private Reservation reservation;
+	
 	private DTOSelectedDate selectedDateDTO;
 	private int numberOfCustomers;
 	
@@ -51,6 +52,8 @@ public class ReservationController {
 	private ReceiptBuilder receiptBuilder;
 	private ArrayList<DTOReceiptContactInfo> contactInfoList;
 	private ArrayList<DTOReceiptActivityItem> activityList;
+	private DTOActivities activitiesInfo;
+	private DTOBaseInfo baseInfo;
 	
 	public ReservationController(ReceiptRepository repository){
 		this.repository = repository;
@@ -72,6 +75,9 @@ public class ReservationController {
 	}
 	
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
+		
+		this.baseInfo = baseInfo;
+		
 		this.numberOfDays = baseInfo.numberOfNights;
 		this.cottageType = baseInfo.cottageType;
 		this.numberOfCustomers = baseInfo.numberOfPeople;
@@ -99,6 +105,8 @@ public class ReservationController {
 	}
 	
 	public void receiveActivitiesInfo(DTOActivities activitiesInfo){
+		
+		this.activitiesInfo = activitiesInfo;
 		
 		if(activitiesInfo.blackBearObservation){
 			this.reservationBuilder.withBlackBearObservationActivity();
@@ -150,7 +158,7 @@ public class ReservationController {
 		DTOSelectedDate selectedDate = this.selectedDateDTO;
 		
 		this.receipt = new Receipt(customer, reservation, selectedDate);
-		setupReceipt(receipt, this.numberOfCustomers, this.numberOfDays);
+		setupReceipt(this.baseInfo, this.activitiesInfo, this.receipt, this.numberOfCustomers, this.numberOfDays);
 		
 		this.reservationMainView.removeNextButton();
 		ReservationView receiptView = new ReservationReceiptView(this.activityList, this.contactInfoList);
@@ -159,9 +167,9 @@ public class ReservationController {
 		this.currentPanel = receiptView;
 	}
 
-	private void setupReceipt(Receipt receipt, int nbOfCustomers, int nbOfDays) {
+	private void setupReceipt(DTOBaseInfo baseInfo, DTOActivities activities, Receipt receipt, int nbOfCustomers, int nbOfDays) {
 		
-		this.receiptBuilder = new ReceiptBuilder(receipt, nbOfDays, nbOfCustomers);
+		this.receiptBuilder = new ReceiptBuilder(baseInfo, activities, receipt, nbOfDays, nbOfCustomers);
 		this.receiptBuilder.build();
 		this.contactInfoList = this.receiptBuilder.getReceiptContactInfo();			
 		this.activityList = this.receiptBuilder.getReceiptActivityList();
