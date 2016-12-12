@@ -9,7 +9,7 @@ public class Receipt {
 	private Customer customer;
 	private String date;
 	
-	public Receipt(){
+	public Receipt(Reservation reservation, Customer customer, String date){
 		this.reservation = reservation;
 		this.customer = customer;
 		this.date = date;
