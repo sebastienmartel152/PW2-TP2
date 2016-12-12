@@ -3,8 +3,11 @@ package tp3.model.reservation.repository;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+import tp3.model.reservation.Receipt;
 import tp3.model.reservation.Reservation;
-import tp3.model.reservation.receipt.Receipt;
+
+
 
 public class ReceiptMemoryRepository implements ReceiptRepository {
 	
