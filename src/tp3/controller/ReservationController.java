@@ -7,7 +7,9 @@ import tp3.model.reservation.CottageType;
 import tp3.model.reservation.MockAvailabilityChecker;
 import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
-
+import tp3.model.reservation.customer.Customer;
+import tp3.model.reservation.receipt.Receipt;
+import tp3.model.reservation.receipt.ReceiptBuilder;
 import tp3.model.reservation.repository.ReceiptRepository;
 import tp3.view.DTO.DTOActivities;
 
@@ -42,6 +44,9 @@ public class ReservationController {
 	// Pour création et affichage de la facture
 	private Reservation reservation;
 	private DTOSelectedDate selectedDateDTO;
+	
+	private Receipt receipt;
+	private ReceiptBuilder receiptBuilder;
 	
 	public ReservationController(ReceiptRepository repository){
 		this.repository = repository;
@@ -135,16 +140,17 @@ public class ReservationController {
 	}
 
 	public void receiveContactInfo(DTOContactInfo contactInfoDTO) {
-		/* À faire:
-		 * Créer l'objet Customer avec les infos du DTO et la date (this.selectedDateDTO) + nombre de jours (this.numberOfDays)
-		 * Créer l'objet Receipt avec le Customer et la Reservation (propriété this.reservation déjà présente)
-		 * Ajouter la Receipt dans this.repository (qui est à changer en repository de Receipt et non de Reservation)
-		 * 
-		 * Arranger listItems ci-bas pour avoir les items de la facture
-		 */
+		Customer customer = new Customer(contactInfoDTO.name, contactInfoDTO.address, contactInfoDTO.phone, contactInfoDTO.email);
+		Reservation reservation = this.reservation;
+		DTOSelectedDate selectedDate = this.selectedDateDTO;
+		
+		this.receipt = new Receipt(customer, reservation, selectedDate);
+		ReceiptBuilder receiptBuilder = new ReceiptBuilder(this.receipt);
 		
 		ArrayList<DTOReceiptItem> listItems = new ArrayList<DTOReceiptItem>();
+		if(this.cottageType == CottageType.FOURPERSON){
 		listItems.add(new DTOReceiptItem("Chalet 4 personnes", 50.00));
+		}
 		listItems.add(new DTOReceiptItem("Transport bateau", 30.00));
 		
 		
