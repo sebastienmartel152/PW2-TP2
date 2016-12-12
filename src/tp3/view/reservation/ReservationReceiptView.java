@@ -2,6 +2,7 @@ package tp3.view.reservation;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -33,6 +34,9 @@ public class ReservationReceiptView extends ReservationView {
 		JLabel label = new JLabel("Merci d'avoir réservé le chalet! Voici votre facture détaillée:");
 		panel.add(label, BorderLayout.NORTH);
 		
+		JPanel centerPanel = new JPanel(new BorderLayout());
+		panel.add(centerPanel, BorderLayout.CENTER);
+		
 		DefaultTableModel activityTableModel = this.createActivityTableModel();
 		JTable activityTable = new JTable(activityTableModel);
 		
@@ -46,8 +50,8 @@ public class ReservationReceiptView extends ReservationView {
 		contactScrollPane.setPreferredSize(new Dimension(380, 280));
 		
 		
-		panel.add(activityScrollPane, BorderLayout.CENTER);
-		panel.add(contactScrollPane, BorderLayout.NORTH);
+		centerPanel.add(activityTable, BorderLayout.CENTER);
+		centerPanel.add(contactTable, BorderLayout.NORTH);
 
 		
 		this.add(panel);
@@ -63,7 +67,7 @@ public class ReservationReceiptView extends ReservationView {
 	}
 
 	private Object[][] convertContact2Data() {
-		Object[][] data = new Object[this.customerItems.size()][NUMBER_OF_COLUMNS];
+		Object[][] data = new Object[this.customerItems.size() + 1][NUMBER_OF_COLUMNS];
 		
 		int i=0;
 		for(DTOReceiptContactInfo item : this.customerItems){
@@ -71,6 +75,8 @@ public class ReservationReceiptView extends ReservationView {
 			data[i][1] = item.value;
 			i++;
 		}
+		data[i][0] = "";
+		data[i][1] = "";
 		
 		return data;
 	}

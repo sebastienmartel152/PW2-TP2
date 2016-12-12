@@ -13,8 +13,12 @@ import tp3.model.option.meal.MealBreakfastDinner;
 import tp3.model.option.meal.MealGastronomicSupper;
 import tp3.model.option.transport.TransportBoat;
 import tp3.model.option.transport.TransportHydroplane;
+import tp3.model.reservation.CottageType;
 import tp3.model.reservation.Reservation;
+import tp3.model.reservation.TransportType;
 import tp3.model.reservation.customer.Customer;
+import tp3.view.DTO.DTOActivities;
+import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.DTO.DTOContactInfo;
 import tp3.view.DTO.DTOReceiptActivityItem;
 import tp3.view.DTO.DTOReceiptContactInfo;
@@ -27,10 +31,14 @@ public class ReceiptBuilder {
 	
 	private ArrayList<DTOReceiptActivityItem> listItems = new ArrayList<DTOReceiptActivityItem>();
 	private ArrayList<DTOReceiptContactInfo> contactInfo = new ArrayList<DTOReceiptContactInfo>();
+	private DTOBaseInfo baseInfo;
+	private DTOActivities activities;
 	
 	
 	
-	public ReceiptBuilder(Receipt receipt, int nbOfDays, int nbOfCustomers){
+	public ReceiptBuilder(DTOBaseInfo baseInfo, DTOActivities activities, Receipt receipt, int nbOfDays, int nbOfCustomers){
+		this.baseInfo = baseInfo;
+		this.activities = activities;
 		this.receipt = receipt;
 		this.nbOfDays = nbOfDays;
 		this.nbOfCustomers = nbOfCustomers;
@@ -49,45 +57,49 @@ public class ReceiptBuilder {
 	public void setUpReceipt(){
 		Reservation reservation = this.receipt.getReservation();
 		
-		if(reservation instanceof FourPersonCottage){
-			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (150.00 * this.nbOfDays)));
+		if(this.baseInfo.cottageType == CottageType.FOURPERSON){
+			this.listItems.add(new DTOReceiptActivityItem("Chalet 4 personnes", (150.00 * this.nbOfDays)));
 		}
 		
-		if(reservation instanceof SixPersonCottage){
-			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (200.00 * this.nbOfDays)));
+		if(this.baseInfo.cottageType == CottageType.SIXPERSON){
+			this.listItems.add(new DTOReceiptActivityItem("Chalet 6 personnes", (200.00 * this.nbOfDays)));
 		}
 		
-		if(reservation instanceof TenPersonCottage){
-			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (300.00 * this.nbOfDays)));
+		if(this.baseInfo.cottageType == CottageType.TENPERSON){
+			this.listItems.add(new DTOReceiptActivityItem("Chalet 10 personnes", (300.00 * this.nbOfDays)));
 		}
 		
-		if(reservation instanceof TransportBoat){
+		if(this.baseInfo.transportTo == TransportType.BOAT){
 			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (30.00 * this.nbOfCustomers)));	
-		}
-		
-		if(reservation instanceof TransportHydroplane){
+		}else{
 			this.listItems.add(new DTOReceiptActivityItem("Transport par hydroplane", (150.00 * this.nbOfCustomers)));
 		}
 		
-		if(reservation instanceof MealBreakfastDinner){
+		if(this.baseInfo.transportBack == TransportType.BOAT){
+			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (30.00 * this.nbOfCustomers)));	
+		}else{
+			this.listItems.add(new DTOReceiptActivityItem("Transport par hydroplane", (150.00 * this.nbOfCustomers)));
+		}
+		
+		if(this.baseInfo.breakfastDinnerOption){
 			this.listItems.add(new DTOReceiptActivityItem("Option déjeuner-diner", (10.00 * this.nbOfCustomers * nbOfDays)));
 		}
 		
-		if(reservation instanceof MealGastronomicSupper){
+		if(this.baseInfo.gastronomicSupperOption){
 			this.listItems.add(new DTOReceiptActivityItem("Option souper gastronomique", (40.00 * this.nbOfCustomers * nbOfDays)));
 		}else{
 			this.listItems.add(new DTOReceiptActivityItem("Option souper régulier", (18.00 * this.nbOfCustomers * this.nbOfCustomers)));
 		}
 		
-		if(reservation instanceof BlackBearObservationActivity){
+		if(this.activities.blackBearObservation){
 			this.listItems.add(new DTOReceiptActivityItem("Observation des ours", (15.00 * this.nbOfCustomers)));
 		}
 				
-		if(reservation instanceof FishingActivity){
+		if(this.activities.flyFishing){
 			this.listItems.add(new DTOReceiptActivityItem("Activité de pêche", (15.00 * this.nbOfCustomers)));
 		}
 		
-		if(reservation instanceof WolfObservationActivity){
+		if(this.activities.wolfObservation){
 			this.listItems.add(new DTOReceiptActivityItem("Observation des loups", (15.00 * this.nbOfCustomers)));
 		}
 		
