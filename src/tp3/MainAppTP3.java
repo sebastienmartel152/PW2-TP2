@@ -1,13 +1,13 @@
 package tp3;
 
 import tp3.controller.WelcomeController;
-import tp3.model.reservation.repository.ReservationMemoryRepository;
-import tp3.model.reservation.repository.ReservationRepository;
+import tp3.model.reservation.repository.ReceiptMemoryRepository;
+import tp3.model.reservation.repository.ReceiptRepository;
 
 public class MainAppTP3 {
 
 	public static void main(String[] args) {
-		ReservationRepository repository = new ReservationMemoryRepository();
+		ReceiptRepository repository = new ReceiptMemoryRepository();
 		
 		WelcomeController welcomeController = new WelcomeController(repository);
 		welcomeController.startApplication();

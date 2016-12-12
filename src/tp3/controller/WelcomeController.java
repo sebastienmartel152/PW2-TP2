@@ -1,14 +1,15 @@
 package tp3.controller;
 
-import tp3.model.reservation.repository.ReservationRepository;
+import tp3.model.reservation.repository.ReceiptRepository;
+
 import tp3.view.WelcomeView;
 
 public class WelcomeController {
 	
-	private ReservationRepository repository;
+	private ReceiptRepository repository;
 	private ReservationController reservationController;
 	
-	public WelcomeController(ReservationRepository repository) {
+	public WelcomeController(ReceiptRepository repository) {
 		this.repository = repository;
 		this.reservationController = new ReservationController(this.repository);
 	}

@@ -7,8 +7,13 @@ import tp3.model.reservation.CottageType;
 import tp3.model.reservation.MockAvailabilityChecker;
 import tp3.model.reservation.Reservation;
 import tp3.model.reservation.ReservationBuilder;
-import tp3.model.reservation.repository.ReservationRepository;
+
+import tp3.model.reservation.repository.ReceiptRepository;
 import tp3.view.DTO.DTOActivities;
+
+
+
+
 import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.DTO.DTOContactInfo;
 import tp3.view.DTO.DTOReceiptItem;
@@ -22,7 +27,7 @@ import tp3.view.reservation.ReservationView;
 
 public class ReservationController {
 	
-	private ReservationRepository repository;
+	private ReceiptRepository repository;
 	private ReservationBuilder reservationBuilder;
 	private ReservationMainView reservationMainView;
 
@@ -30,15 +35,15 @@ public class ReservationController {
 
 	private ReservationView currentPanel;
 	
-	// Pour la vÈrification de disponibilitÈ
+	// Pour la v√©rification de disponibilit√©
 	private int numberOfDays;
 	private CottageType cottageType;
 	
-	// Pour crÈation et affichage de la facture
+	// Pour cr√©ation et affichage de la facture
 	private Reservation reservation;
 	private DTOSelectedDate selectedDateDTO;
 	
-	public ReservationController(ReservationRepository repository){
+	public ReservationController(ReceiptRepository repository){
 		this.repository = repository;
 	}
 	
@@ -130,10 +135,10 @@ public class ReservationController {
 	}
 
 	public void receiveContactInfo(DTOContactInfo contactInfoDTO) {
-		/* ¿ faire:
-		 * CrÈer l'objet Customer avec les infos du DTO et la date (this.selectedDateDTO) + nombre de jours (this.numberOfDays)
-		 * CrÈer l'objet Receipt avec le Customer et la Reservation (propriÈtÈ this.reservation dÈj‡ prÈsente)
-		 * Ajouter la Receipt dans this.repository (qui est ‡ changer en repository de Receipt et non de Reservation)
+		/* √Ä faire:
+		 * Cr√©er l'objet Customer avec les infos du DTO et la date (this.selectedDateDTO) + nombre de jours (this.numberOfDays)
+		 * Cr√©er l'objet Receipt avec le Customer et la Reservation (propri√©t√© this.reservation d√©j√† pr√©sente)
+		 * Ajouter la Receipt dans this.repository (qui est √† changer en repository de Receipt et non de Reservation)
 		 * 
 		 * Arranger listItems ci-bas pour avoir les items de la facture
 		 */
