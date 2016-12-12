@@ -11,11 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import tp3.controller.ReservationController;
+
 
 @SuppressWarnings("serial")
 public class ReservationMainView extends JFrame implements ActionListener {
 	
-	private static final String BUTTON_NEXT_LABEL = "Suivant";
+	private static final String BUTTON_CONFIRM_TEXT = "Confirmer";
+	private static final String BUTTON_NEXT_TEXT = "Suivant";
 
 	private static final String VIEW_TITLE = "Réservation d'un chalet";
 	
@@ -24,12 +27,15 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	private static final Point DEFAULT_LOCATION = new Point(200, 30);
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
-
 	private ReservationView centralPanel;
+	private ReservationController reservationController;
 	
-	public ReservationMainView(ReservationView firstPanel){
+	private JButton nextButton;
+	
+	public ReservationMainView(ReservationController reservationController, ReservationView firstPanel){
 		super();
 		this.centralPanel = firstPanel;
+		this.reservationController = reservationController;
 		
 		this.initialize();
 		this.setUpComponents();
@@ -48,7 +54,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		
-		JButton nextButton = new JButton(BUTTON_NEXT_LABEL);
+		nextButton = new JButton(BUTTON_NEXT_TEXT);
 		nextButton.addActionListener(this);
 		nextButton.setActionCommand(ACTION_NEXT);
 		
@@ -68,9 +74,23 @@ public class ReservationMainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()){
 		case ACTION_NEXT:
-			this.centralPanel.sendInformation();
+			this.reservationController.nextPanel();
 			break;
 		}
+	}
+
+	public void disableNextButton() {
+		this.nextButton.setEnabled(false);
+	}
+
+	public void setFinalButton() {
+		this.nextButton.setText(BUTTON_CONFIRM_TEXT);
+		this.nextButton.setEnabled(true);
+	}
+
+	public void removeNextButton() {
+		this.nextButton.setVisible(false);
+		
 	}
 	
 	

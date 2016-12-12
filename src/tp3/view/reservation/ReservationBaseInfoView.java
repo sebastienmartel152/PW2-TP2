@@ -19,17 +19,21 @@ import tp3.view.DTO.DTOBaseInfo;
 @SuppressWarnings("serial")
 public class ReservationBaseInfoView extends ReservationView implements ActionListener {
 	
+	private static final String ERROR_MESSAGE_NB_NIGHTS_INVALID = "Erreur: Le champ \"Nombre de nuits\" doit être un nombre valide.";
+
+	private static final String ERROR_MESSAGE_NB_NIGHTS_BELOW_1 = "Erreur: Le champ \"Nombre de nuits\" doit être supérieur à zéro.";
+
 	private ReservationController reservationController;
 	
 	// Textes des labels du formulaire
 	
-	public static final String COTTAGE_TYPE_TEXT = "Type de chalet";
-	public static final String NUMBER_OF_PEOPLE_TEXT = "Nombre de personnes";
-	public static final String NUMBER_OF_NIGHTS_TEXT = "Nombre de nuits";
-	public static final String TRANSPORT_TYPE_TO_TEXT = "Type de transport (allé)";
-	public static final String TRANSPORT_TYPE_BACK_TEXT = "Type de transport (retour)";
-	public static final String BREAKFAST_OPTION_TEXT = "Option déjeûner/dîner";
-	public static final String GASTRONOMIC_SUPPER_OPTION_TEXT = "Option souper gastronomic";
+	private static final String COTTAGE_TYPE_TEXT = "Type de chalet";
+	private static final String NUMBER_OF_PEOPLE_TEXT = "Nombre de personnes";
+	private static final String NUMBER_OF_NIGHTS_TEXT = "Nombre de nuits";
+	private static final String TRANSPORT_TYPE_TO_TEXT = "Type de transport (allé)";
+	private static final String TRANSPORT_TYPE_BACK_TEXT = "Type de transport (retour)";
+	private static final String BREAKFAST_OPTION_TEXT = "Option déjeûner/dîner";
+	private static final String GASTRONOMIC_SUPPER_OPTION_TEXT = "Option souper gastronomic";
 
 	private static final String COTTAGE_TYPE_SELECTED = "COTTAGE_TYPE_SELECTED";
 	
@@ -121,10 +125,15 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		boolean inputsAreCorrect = true;
 		
 		try{
-			Integer.parseInt(this.numberOfNightsInput.getText());
+			int nbNights = Integer.parseInt(this.numberOfNightsInput.getText());
+			
+			if(nbNights <= 0){
+				JOptionPane.showMessageDialog(this, ERROR_MESSAGE_NB_NIGHTS_BELOW_1);
+				inputsAreCorrect = false;
+			}
 		}catch(NumberFormatException e){
 			inputsAreCorrect = false;
-			JOptionPane.showMessageDialog(this, "Veuillez entrer un nombre!");
+			JOptionPane.showMessageDialog(this, ERROR_MESSAGE_NB_NIGHTS_INVALID);
 		}
 		
 		return inputsAreCorrect;
@@ -134,7 +143,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		CottageType cottageType = (CottageType) this.cottageTypeCombo.getSelectedItem();
 		TransportType transportTypeTo = (TransportType) this.transportTypeToCombo.getSelectedItem();
 		TransportType transportTypeBack = (TransportType) this.transportTypeBackCombo.getSelectedItem();
-		int numberOfPeople = this.numberOfPeopleCombo.getSelectedIndex();
+		int numberOfPeople = (int) this.numberOfPeopleCombo.getSelectedItem();
 		int numberOfNights = Integer.parseInt(this.numberOfNightsInput.getText());
 		boolean breakfastDinnerOption = this.breakfastDinnerCheckBox.isSelected();
 		boolean gastronomicSupperOption = this.gastronomicSupperCheckBox.isSelected();
