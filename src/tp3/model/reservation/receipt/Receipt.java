@@ -15,5 +15,17 @@ public class Receipt {
 		this.customer = customer;
 		this.date = date;
 	}
+	
+	public Customer getCustomer(){
+		return this.customer;
+	}
+	
+	public Reservation getReservation(){
+		return this.reservation;
+	}
+	
+	public DTOSelectedDate getDate(){
+		return this.date;
+	}
 
 }

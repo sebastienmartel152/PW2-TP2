@@ -18,7 +18,8 @@ import tp3.view.DTO.DTOActivities;
 
 import tp3.view.DTO.DTOBaseInfo;
 import tp3.view.DTO.DTOContactInfo;
-import tp3.view.DTO.DTOReceiptItem;
+import tp3.view.DTO.DTOReceiptActivityItem;
+import tp3.view.DTO.DTOReceiptContactInfo;
 import tp3.view.DTO.DTOSelectedDate;
 import tp3.view.reservation.ReservationActivitiesView;
 import tp3.view.reservation.ReservationBaseInfoView;
@@ -44,9 +45,12 @@ public class ReservationController {
 	// Pour création et affichage de la facture
 	private Reservation reservation;
 	private DTOSelectedDate selectedDateDTO;
+	private int numberOfCustomers;
 	
 	private Receipt receipt;
 	private ReceiptBuilder receiptBuilder;
+	private ArrayList<DTOReceiptContactInfo> contactInfoList;
+	private ArrayList<DTOReceiptActivityItem> activityList;
 	
 	public ReservationController(ReceiptRepository repository){
 		this.repository = repository;
@@ -70,6 +74,7 @@ public class ReservationController {
 	public void receiveBaseInfo(DTOBaseInfo baseInfo) {
 		this.numberOfDays = baseInfo.numberOfNights;
 		this.cottageType = baseInfo.cottageType;
+		this.numberOfCustomers = baseInfo.numberOfPeople;
 		
 		this.reservationBuilder = new ReservationBuilder(baseInfo.cottageType, baseInfo.numberOfPeople,
 				baseInfo.numberOfNights, baseInfo.transportTo, baseInfo.transportBack);
@@ -145,20 +150,21 @@ public class ReservationController {
 		DTOSelectedDate selectedDate = this.selectedDateDTO;
 		
 		this.receipt = new Receipt(customer, reservation, selectedDate);
-		ReceiptBuilder receiptBuilder = new ReceiptBuilder(this.receipt);
-		
-		ArrayList<DTOReceiptItem> listItems = new ArrayList<DTOReceiptItem>();
-		if(this.cottageType == CottageType.FOURPERSON){
-		listItems.add(new DTOReceiptItem("Chalet 4 personnes", 50.00));
-		}
-		listItems.add(new DTOReceiptItem("Transport bateau", 30.00));
-		
+		setupReceipt(receipt, this.numberOfCustomers, this.numberOfDays);
 		
 		this.reservationMainView.removeNextButton();
-		ReservationView receiptView = new ReservationReceiptView(listItems);
+		ReservationView receiptView = new ReservationReceiptView(this.activityList, this.contactInfoList);
 		
 		this.reservationMainView.setPanel(receiptView);
 		this.currentPanel = receiptView;
+	}
+
+	private void setupReceipt(Receipt receipt, int nbOfCustomers, int nbOfDays) {
+		
+		this.receiptBuilder = new ReceiptBuilder(receipt, nbOfDays, nbOfCustomers);
+		this.receiptBuilder.build();
+		this.contactInfoList = this.receiptBuilder.getReceiptContactInfo();			
+		this.activityList = this.receiptBuilder.getReceiptActivityList();
 	}
 
 

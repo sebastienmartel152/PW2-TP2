@@ -1,11 +1,13 @@
 package tp3.view.DTO;
 
-public class DTOReceiptItem {
+public class DTOReceiptActivityItem {
 	public final String description;
 	public final double price;
 	
-	public DTOReceiptItem(String description, double price){
+	public DTOReceiptActivityItem(String description, double price){
 		this.description = description;
 		this.price = price;
 	}
+	
+	
 }
