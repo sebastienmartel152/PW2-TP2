@@ -8,10 +8,12 @@ public class WelcomeController {
 	
 	private ReceiptRepository repository;
 	private ReservationController reservationController;
+	private AdminController adminController;
 	
 	public WelcomeController(ReceiptRepository repository) {
 		this.repository = repository;
 		this.reservationController = new ReservationController(this.repository);
+		this.adminController = new AdminController(this.repository);
 	}
 	
 	public void startApplication(){
@@ -20,7 +22,7 @@ public class WelcomeController {
 	}
 	
 	public void showAdminView() {
-		
+		this.adminController.displayWindow();
 		
 	}
 
