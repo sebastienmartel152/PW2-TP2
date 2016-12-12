@@ -22,12 +22,13 @@ public class ReservationBuilder {
 		this.numberOfDays = numberOfDays;
 		this.numberOfPeople = numberOfPeople;
 		
+		
 		setBaseCottage(cottageType);
 		addTransport(transportTo);
 		addTransport(transportBack);
 		
 		addSupper();
-	
+		
 	}
 	
 	private void setBaseCottage(CottageType cottageType){
@@ -56,7 +57,6 @@ public class ReservationBuilder {
 			break;
 		default:
 			break;
-		
 		}
 	}
 	
@@ -66,37 +66,32 @@ public class ReservationBuilder {
 	
 	// Repas
 	
-	public ReservationBuilder withBreakfastDinner(){
+	public void withBreakfastDinner(){
 		reservation = new MealBreakfastDinner(reservation, this.numberOfPeople, this.numberOfDays);
 		
-		return this;
-	}
+		}
 	
-	public ReservationBuilder withGastronomicSupper(){
+	public void withGastronomicSupper(){
 		reservation = new MealGastronomicSupper(reservation, this.numberOfPeople, this.numberOfDays);
 		
-		return this;
-	}
+		}
 		
 	// Activités
 	
-	public ReservationBuilder withBlackBearObservationActivity(){
+	public void withBlackBearObservationActivity(){
 		reservation = new BlackBearObservationActivity(reservation, this.numberOfPeople);
 		
-		return this;
-	}
+		}
 	
-	public ReservationBuilder withFishingActivity(){
+	public void withFishingActivity(){
 		reservation = new FishingActivity(reservation, this.numberOfPeople);
 		
-		return this;
-	}
+		}
 	
-	public ReservationBuilder withWolfObservationActivity(){
+	public void withWolfObservationActivity(){
 		reservation = new WolfObservationActivity(reservation, this.numberOfPeople);
 		
-		return this;
-	}
+		}
 	
 	// Build
 	
