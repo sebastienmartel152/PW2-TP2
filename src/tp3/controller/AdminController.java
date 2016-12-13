@@ -15,7 +15,12 @@ public class AdminController {
 	}
 	
 	public void displayWindow(){
+		this.adminView = new AdminView(this);
 		this.adminView.setVisible(true);
+	}
+
+	public ReceiptRepository getRepository() {
+		return this.repository;	
 	}
 	
 	

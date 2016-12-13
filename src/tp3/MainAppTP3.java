@@ -8,8 +8,9 @@ public class MainAppTP3 {
 
 	public static void main(String[] args) {
 		ReceiptRepository repository = new ReceiptMemoryRepository();
-		
 		WelcomeController welcomeController = new WelcomeController(repository);
+		
+		
 		welcomeController.startApplication();
 	}
 

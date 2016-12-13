@@ -7,8 +7,11 @@ public class Customer {
 	private String phone;
 	private String mail;
 	
-	public Customer(CustomerParameter parameterObject){
-		
+	public Customer(String name, String address, String phone, String mail){
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.mail = mail;
 	}
 	
 }
