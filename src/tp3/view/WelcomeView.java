@@ -20,6 +20,8 @@ import tp3.util.image.ImageUtil;
 @SuppressWarnings("serial")
 public class WelcomeView extends JFrame implements ActionListener {
 	
+	private static final String FONT_VALUE = "Arial";
+
 	private WelcomeController welcomeController;
 	
 	private static final String VIEW_TITLE = "Bienvenue à la pourvoirie";
@@ -66,7 +68,7 @@ public class WelcomeView extends JFrame implements ActionListener {
 		welcomePanel.add(welcomePicture);
 		
 		JLabel welcomeMessage = new JLabel(WelcomeView.WELCOME_MESSAGE, SwingConstants.CENTER);
-		welcomeMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+		welcomeMessage.setFont(new Font(FONT_VALUE, Font.PLAIN, 20));
 		
 		welcomePanel.add(welcomeMessage, BorderLayout.NORTH);	
 	}
