@@ -14,8 +14,6 @@ public class ReceiptMemoryRepository implements ReceiptRepository {
 	@Override
 	public void add(ReceiptBuilder receipt) {
 		this.receipts.add(receipt);
-		System.out.println("Success");
-		System.out.println(this.count());
 		
 	}
 

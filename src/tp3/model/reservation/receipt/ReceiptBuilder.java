@@ -2,9 +2,18 @@ package tp3.model.reservation.receipt;
 
 import java.util.ArrayList;
 
-
+import tp3.model.cottage.FourPersonCottage;
+import tp3.model.cottage.SixPersonCottage;
+import tp3.model.cottage.TenPersonCottage;
+import tp3.model.option.activity.BlackBearObservationActivity;
+import tp3.model.option.activity.FishingActivity;
+import tp3.model.option.activity.WolfObservationActivity;
+import tp3.model.option.meal.MealBreakfastDinner;
+import tp3.model.option.meal.MealGastronomicSupper;
+import tp3.model.option.meal.MealSupper;
+import tp3.model.option.transport.TransportBoat;
+import tp3.model.option.transport.TransportHydroplane;
 import tp3.model.reservation.CottageType;
-import tp3.model.reservation.Reservation;
 import tp3.model.reservation.TransportType;
 import tp3.model.reservation.customer.Customer;
 import tp3.view.DTO.DTOActivities;
@@ -15,6 +24,21 @@ import tp3.view.DTO.DTOSelectedDate;
 
 public class ReceiptBuilder {
 	
+	private static final String WOLF_OBSERVATION_TEXT = "Observation des loups";
+	private static final String FISHING_TEXT = "Activité de pêche";
+	private static final String BEAR_OBSERVATION_TEXT = "Observation des ours";
+	private static final String REGULAR_SUPPER_TEXT = "Option souper régulier";
+	private static final String FANCY_SUPPER_TEXT = "Option souper gastronomique";
+	private static final String BREAKFAST_DINNER_TEXT = "Option déjeuner-diner";
+	private static final String TRANSPORT_HYDROPLANE_TEXT = "Transport par hydroplane";
+	private static final String TRANSPORT_BOAT_TEXT = "Transport par bateau";
+	private static final String TENPERSON_COTTAGE_TEXT = "Chalet 10 personnes";
+	private static final String SIXPERSON_COTTAGE_TEXT = "Chalet 6 personnes";
+	private static final String FOURPERSON_COTTAGE_TEXT = "Chalet 4 personnes";
+	private static final String MAIL_LABEL = "Email";
+	private static final String PHONE_LABEL = "Téléphone";
+	private static final String ADDRESS_LABEL = "Adresse";
+	private static final String NAME_LABEL = "Nom";
 	private Receipt receipt;
 	private int nbOfDays;
 	private int nbOfCustomers;
@@ -37,60 +61,59 @@ public class ReceiptBuilder {
 	public void setUpCustomer(){
 		
 		Customer customer = this.receipt.getCustomer();
-		this.contactInfo.add(new DTOReceiptContactInfo("Nom", customer.getName()));
-		this.contactInfo.add(new DTOReceiptContactInfo("Adresse", customer.getAddress()));
-		this.contactInfo.add(new DTOReceiptContactInfo("Téléphone", customer.getPhone()));
-		this.contactInfo.add(new DTOReceiptContactInfo("Email", customer.getMail()));	
+		this.contactInfo.add(new DTOReceiptContactInfo(NAME_LABEL, customer.getName()));
+		this.contactInfo.add(new DTOReceiptContactInfo(ADDRESS_LABEL, customer.getAddress()));
+		this.contactInfo.add(new DTOReceiptContactInfo(PHONE_LABEL, customer.getPhone()));
+		this.contactInfo.add(new DTOReceiptContactInfo(MAIL_LABEL, customer.getMail()));	
 	}
 	
 	
 	public void setUpReceipt(){
-		Reservation reservation = this.receipt.getReservation();
 		
 		if(this.baseInfo.cottageType == CottageType.FOURPERSON){
-			this.listItems.add(new DTOReceiptActivityItem("Chalet 4 personnes", (150.00 * this.nbOfDays)));
+			this.listItems.add(new DTOReceiptActivityItem(FOURPERSON_COTTAGE_TEXT, (FourPersonCottage.DEFAULT_COTTAGE_PRICE * this.nbOfDays)));
 		}
 		
 		if(this.baseInfo.cottageType == CottageType.SIXPERSON){
-			this.listItems.add(new DTOReceiptActivityItem("Chalet 6 personnes", (200.00 * this.nbOfDays)));
+			this.listItems.add(new DTOReceiptActivityItem(SIXPERSON_COTTAGE_TEXT, (SixPersonCottage.DEFAULT_COTTAGE_PRICE * this.nbOfDays)));
 		}
 		
 		if(this.baseInfo.cottageType == CottageType.TENPERSON){
-			this.listItems.add(new DTOReceiptActivityItem("Chalet 10 personnes", (300.00 * this.nbOfDays)));
+			this.listItems.add(new DTOReceiptActivityItem(TENPERSON_COTTAGE_TEXT, (TenPersonCottage.DEFAULT_COTTAGE_PRICE * this.nbOfDays)));
 		}
 		
 		if(this.baseInfo.transportTo == TransportType.BOAT){
-			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (30.00 * this.nbOfCustomers)));	
+			this.listItems.add(new DTOReceiptActivityItem(TRANSPORT_BOAT_TEXT, (TransportBoat.DEFAULT_COST_PER_PERSON * this.nbOfCustomers)));	
 		}else{
-			this.listItems.add(new DTOReceiptActivityItem("Transport par hydroplane", (150.00 * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(TRANSPORT_HYDROPLANE_TEXT, (TransportHydroplane.DEFAULT_COST_PER_PERSON * this.nbOfCustomers)));
 		}
 		
 		if(this.baseInfo.transportBack == TransportType.BOAT){
-			this.listItems.add(new DTOReceiptActivityItem("Transport par bateau", (30.00 * this.nbOfCustomers)));	
+			this.listItems.add(new DTOReceiptActivityItem(TRANSPORT_BOAT_TEXT, (TransportBoat.DEFAULT_COST_PER_PERSON * this.nbOfCustomers)));	
 		}else{
-			this.listItems.add(new DTOReceiptActivityItem("Transport par hydroplane", (150.00 * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(TRANSPORT_HYDROPLANE_TEXT, (TransportHydroplane.DEFAULT_COST_PER_PERSON * this.nbOfCustomers)));
 		}
 		
 		if(this.baseInfo.breakfastDinnerOption){
-			this.listItems.add(new DTOReceiptActivityItem("Option déjeuner-diner", (10.00 * this.nbOfCustomers * nbOfDays)));
+			this.listItems.add(new DTOReceiptActivityItem(BREAKFAST_DINNER_TEXT, (MealBreakfastDinner.DEFAULT_COST_PER_PERSON_PER_BREAKFAST * this.nbOfCustomers * nbOfDays)));
 		}
 		
 		if(this.baseInfo.gastronomicSupperOption){
-			this.listItems.add(new DTOReceiptActivityItem("Option souper gastronomique", (40.00 * this.nbOfCustomers * nbOfDays)));
+			this.listItems.add(new DTOReceiptActivityItem(FANCY_SUPPER_TEXT, ((MealGastronomicSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER + MealSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER) * this.nbOfCustomers * nbOfDays)));
 		}else{
-			this.listItems.add(new DTOReceiptActivityItem("Option souper régulier", (18.00 * this.nbOfCustomers * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(REGULAR_SUPPER_TEXT, (MealSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER * this.nbOfCustomers * this.nbOfCustomers)));
 		}
 		
 		if(this.activities.blackBearObservation){
-			this.listItems.add(new DTOReceiptActivityItem("Observation des ours", (15.00 * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(BEAR_OBSERVATION_TEXT, (BlackBearObservationActivity.DEFAULT_COST * this.nbOfCustomers)));
 		}
 				
 		if(this.activities.flyFishing){
-			this.listItems.add(new DTOReceiptActivityItem("Activité de pêche", (15.00 * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(FISHING_TEXT, (FishingActivity.DEFAULT_COST * this.nbOfCustomers)));
 		}
 		
 		if(this.activities.wolfObservation){
-			this.listItems.add(new DTOReceiptActivityItem("Observation des loups", (15.00 * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(WOLF_OBSERVATION_TEXT, (WolfObservationActivity.DEFAULT_COST * this.nbOfCustomers)));
 		}
 		
 		
@@ -140,6 +163,22 @@ public class ReceiptBuilder {
 	
 	public double getTotal(){
 		return this.receipt.getReservation().calculateTotalCost();
+	}
+	
+	public String getCottageType(){
+		String cottageType = "";
+		if(this.baseInfo.cottageType == CottageType.FOURPERSON){
+			cottageType = FOURPERSON_COTTAGE_TEXT;
+		}
+		
+		if(this.baseInfo.cottageType == CottageType.SIXPERSON){
+			cottageType = SIXPERSON_COTTAGE_TEXT;
+		}
+		
+		if(this.baseInfo.cottageType == CottageType.TENPERSON){
+			cottageType = TENPERSON_COTTAGE_TEXT;
+		}
+		return cottageType;
 	}
 
 }
