@@ -3,25 +3,25 @@ package tp3.model.reservation.repository;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-import tp3.model.reservation.Receipt;
-import tp3.model.reservation.Reservation;
+import tp3.model.reservation.receipt.ReceiptBuilder;
 
 
 
 public class ReceiptMemoryRepository implements ReceiptRepository {
 	
-	private Collection<Receipt> receipts = new ArrayList<Receipt>();
+	private Collection<ReceiptBuilder> receipts = new ArrayList<ReceiptBuilder>();
 	
 	@Override
-	public void add(Receipt receipt) {
+	public void add(ReceiptBuilder receipt) {
 		this.receipts.add(receipt);
+		System.out.println("Success");
+		System.out.println(this.count());
 		
 	}
 
 	@Override
-	public ArrayList<Receipt> listAll() {
-		return new ArrayList<Receipt>(this.receipts);
+	public ArrayList<ReceiptBuilder> listAll() {
+		return new ArrayList<ReceiptBuilder>(this.receipts);
 	}
 
 	@Override

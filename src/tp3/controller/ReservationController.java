@@ -170,6 +170,7 @@ public class ReservationController {
 	private void setupReceipt(DTOBaseInfo baseInfo, DTOActivities activities, Receipt receipt, int nbOfCustomers, int nbOfDays) {
 		
 		this.receiptBuilder = new ReceiptBuilder(baseInfo, activities, receipt, nbOfDays, nbOfCustomers);
+		this.repository.add(receiptBuilder);
 		this.receiptBuilder.build();
 		this.contactInfoList = this.receiptBuilder.getReceiptContactInfo();			
 		this.activityList = this.receiptBuilder.getReceiptActivityList();

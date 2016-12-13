@@ -1,27 +1,17 @@
 package tp3.model.reservation.receipt;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
-import tp3.model.cottage.FourPersonCottage;
-import tp3.model.cottage.SixPersonCottage;
-import tp3.model.cottage.TenPersonCottage;
-import tp3.model.option.activity.BlackBearObservationActivity;
-import tp3.model.option.activity.FishingActivity;
-import tp3.model.option.activity.WolfObservationActivity;
-import tp3.model.option.meal.MealBreakfastDinner;
-import tp3.model.option.meal.MealGastronomicSupper;
-import tp3.model.option.transport.TransportBoat;
-import tp3.model.option.transport.TransportHydroplane;
+
 import tp3.model.reservation.CottageType;
 import tp3.model.reservation.Reservation;
 import tp3.model.reservation.TransportType;
 import tp3.model.reservation.customer.Customer;
 import tp3.view.DTO.DTOActivities;
 import tp3.view.DTO.DTOBaseInfo;
-import tp3.view.DTO.DTOContactInfo;
 import tp3.view.DTO.DTOReceiptActivityItem;
 import tp3.view.DTO.DTOReceiptContactInfo;
+import tp3.view.DTO.DTOSelectedDate;
 
 public class ReceiptBuilder {
 	
@@ -117,6 +107,39 @@ public class ReceiptBuilder {
 	public void build() {
 		setUpCustomer();
 		setUpReceipt();
+	}
+	
+	public String getName(){
+		return this.receipt.getCustomer().getName();
+	}
+	
+	public String getAddress(){
+		return this.receipt.getCustomer().getAddress();
+	}
+	
+	public String getPhone(){
+		return this.receipt.getCustomer().getPhone();
+	}
+	
+	public String getMail(){
+		return this.receipt.getCustomer().getMail();
+	}
+	
+	public String getDate(){
+		DTOSelectedDate DTOdate = this.receipt.getDate();
+		Integer day = DTOdate.selectedDay;
+		Integer month = DTOdate.selectedMonth;
+		Integer year = DTOdate.selectedYear;
+		String date = day.toString() + "/" + month.toString() + "/" + year.toString();
+		return date;
+	}
+	
+	public int getNumberOfDays(){
+		return this.baseInfo.numberOfNights;
+	}
+	
+	public double getTotal(){
+		return this.receipt.getReservation().calculateTotalCost();
 	}
 
 }

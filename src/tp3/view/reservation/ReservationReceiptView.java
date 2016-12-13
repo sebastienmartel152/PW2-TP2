@@ -1,14 +1,11 @@
 package tp3.view.reservation;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,13 +39,6 @@ public class ReservationReceiptView extends ReservationView {
 		
 		DefaultTableModel contactTableModel = this.createContactTableModel();
 		JTable contactTable = new JTable(contactTableModel);
-		
-		JScrollPane activityScrollPane = new JScrollPane(activityTable);
-		activityScrollPane.setPreferredSize(new Dimension(380, 280));
-		
-		JScrollPane contactScrollPane = new JScrollPane(activityTable);
-		contactScrollPane.setPreferredSize(new Dimension(380, 280));
-		
 		
 		centerPanel.add(activityTable, BorderLayout.CENTER);
 		centerPanel.add(contactTable, BorderLayout.NORTH);
