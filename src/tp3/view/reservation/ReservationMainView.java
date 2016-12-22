@@ -79,7 +79,7 @@ public class ReservationMainView extends JFrame implements ActionListener {
 		}
 	}
 
-	public void disableNextButton() {
+	public void disableNextButton() {  // 2SM: devrait être privé? PAs au contrôleur de gérer l'affichage graphique!
 		this.nextButton.setEnabled(false);
 	}
 

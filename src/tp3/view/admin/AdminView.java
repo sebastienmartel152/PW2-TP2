@@ -65,7 +65,7 @@ public class AdminView extends JFrame {
 			this.add(centerPanel, BorderLayout.CENTER);
 			
 			
-			DefaultTableModel tableModel = this.createTableModel();
+			DefaultTableModel tableModel = this.createTableModel(); 
 			JTable reservationTable = new JTable(tableModel);
 			centerPanel.add(reservationTable, BorderLayout.CENTER);
 	}
@@ -79,10 +79,10 @@ public class AdminView extends JFrame {
 
 	private Object[][] convert2Data() {
 		Object[][] data = new Object[this.adminController.getRepository().count() + 1][NUMBER_OF_COLUMNS];
-		ArrayList<ReceiptBuilder> receiptList = new ArrayList<ReceiptBuilder>(this.adminController.getRepository().listAll());		
+		ArrayList<ReceiptBuilder> receiptList = new ArrayList<ReceiptBuilder>(this.adminController.getRepository().listAll());	//@SM: OH! ici communication directe avec le modèle!	
 				int i=0;
 				
-				data[i][0] = NAME_LABEL;
+				data[i][0] = NAME_LABEL;  //@SM: ?? Non, mauvais traitement des colonnes pour un JTable
 				data[i][1] = ADDRESS_LABEL;
 				data[i][2] = PHONE_LABEL;
 				data[i][3] = MAIL_LABEL;

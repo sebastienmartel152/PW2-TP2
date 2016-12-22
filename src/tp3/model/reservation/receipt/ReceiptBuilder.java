@@ -22,9 +22,14 @@ import tp3.view.DTO.DTOReceiptActivityItem;
 import tp3.view.DTO.DTOReceiptContactInfo;
 import tp3.view.DTO.DTOSelectedDate;
 
-public class ReceiptBuilder {
+public class ReceiptBuilder {  //@SM: il y a un mélange ici entre le modèle et le DTO --> à revoir
+								//@SM: revoir pour la facturation. Vous refaites le travail et les calculs!! C'est affreux, c'est de la redondance! Et en évidemment, avec une erreur.
+								//@SM: n'est relié à aucune réservation, ni n'utilise aucune réservation...
 	
-	private static final String WOLF_OBSERVATION_TEXT = "Observation des loups";
+	//@SM: que de responsabilités pour une seule classe!
+	
+	private static final String WOLF_OBSERVATION_TEXT = "Observation des loups";  //@SM: c'est du texte déjà affiché dans l'interface
+																					//@SM: pourquoi ne pas avoir utilisé les énums?
 	private static final String FISHING_TEXT = "Activité de pêche";
 	private static final String BEAR_OBSERVATION_TEXT = "Observation des ours";
 	private static final String REGULAR_SUPPER_TEXT = "Option souper régulier";
@@ -68,7 +73,7 @@ public class ReceiptBuilder {
 	}
 	
 	
-	public void setUpReceipt(){
+	public void setUpReceipt(){  //@SM: quelle erreur ici!! Vous utilisez les DEFAUTL_PRICE (qui d'ailleurs être privées dans leurs classes au lieu de unitCostPerPersonPerSupper!!
 		
 		if(this.baseInfo.cottageType == CottageType.FOURPERSON){
 			this.listItems.add(new DTOReceiptActivityItem(FOURPERSON_COTTAGE_TEXT, (FourPersonCottage.DEFAULT_COTTAGE_PRICE * this.nbOfDays)));
@@ -101,7 +106,7 @@ public class ReceiptBuilder {
 		if(this.baseInfo.gastronomicSupperOption){
 			this.listItems.add(new DTOReceiptActivityItem(FANCY_SUPPER_TEXT, ((MealGastronomicSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER + MealSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER) * this.nbOfCustomers * nbOfDays)));
 		}else{
-			this.listItems.add(new DTOReceiptActivityItem(REGULAR_SUPPER_TEXT, (MealSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER * this.nbOfCustomers * this.nbOfCustomers)));
+			this.listItems.add(new DTOReceiptActivityItem(REGULAR_SUPPER_TEXT, (MealSupper.DEFAULT_COST_PER_PERSON_PER_SUPPER * this.nbOfCustomers * this.nbOfCustomers)));  //@SM: oh! devrait mutiplier par le nombre de jours
 		}
 		
 		if(this.activities.blackBearObservation){

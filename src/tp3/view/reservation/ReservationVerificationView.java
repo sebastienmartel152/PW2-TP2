@@ -138,7 +138,7 @@ public class ReservationVerificationView extends ReservationView implements Acti
 		
 	}
 
-	private void checkAvailability() {
+	private void checkAvailability() { 
 		int selectedDay = (int) this.dayCombo.getSelectedItem();
 		Month selectedMonth = (Month) this.monthCombo.getSelectedItem();
 		int selectedYear = (int) this.yearCombo.getSelectedItem();

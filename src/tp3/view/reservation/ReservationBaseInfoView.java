@@ -56,7 +56,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 	}
 
 	private void setupFormPanel() {
-		JPanel formPanel = new JPanel(new GridLayout(0, 2));
+		JPanel formPanel = new JPanel(new GridLayout(0, 2)); 
 		
 		JLabel cottageTypeLabel = new JLabel(COTTAGE_TYPE_TEXT);
 		JLabel numberOfPeopleLabel = new JLabel(NUMBER_OF_PEOPLE_TEXT);
@@ -139,7 +139,7 @@ public class ReservationBaseInfoView extends ReservationView implements ActionLi
 		return inputsAreCorrect;
 	}
 	
-	public DTOBaseInfo getBaseInfoDTO(){
+	public DTOBaseInfo getBaseInfoDTO(){  //@SM: public ? --> private
 		CottageType cottageType = (CottageType) this.cottageTypeCombo.getSelectedItem();
 		TransportType transportTypeTo = (TransportType) this.transportTypeToCombo.getSelectedItem();
 		TransportType transportTypeBack = (TransportType) this.transportTypeBackCombo.getSelectedItem();

@@ -1,6 +1,6 @@
 package tp3.model.reservation;
 
-public class Customer {
+public class Customer {  //@SM: code mort. Classe non utilisée
 
 	private String name;
 	private String address;

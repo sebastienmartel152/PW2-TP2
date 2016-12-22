@@ -133,11 +133,11 @@ public class ReservationController {
 		this.reservationMainView.setPanel(confirmationPanel);
 		this.currentPanel = confirmationPanel;
 		
-		this.reservationMainView.disableNextButton();
+		this.reservationMainView.disableNextButton();  //@SM?? Ce serait plutôt à la vue de gérer ça. Pas au contrôleur! (SRP)
 	}
 
 	public boolean checkAvailability(DTOSelectedDate selectedDateDTO) {
-		AvailabilityChecker checker = new MockAvailabilityChecker(MockAvailabilityChecker.TRUE);
+		AvailabilityChecker checker = new MockAvailabilityChecker(MockAvailabilityChecker.RANDOM);
 		
 		boolean isAvailable = checker.checkAvailability(selectedDateDTO.selectedDay, selectedDateDTO.selectedMonth, selectedDateDTO.selectedYear,
 				this.cottageType, this.numberOfDays);

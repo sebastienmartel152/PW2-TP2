@@ -8,7 +8,7 @@ public class Receipt {
 	
 	private Reservation reservation;
 	private Customer customer;
-	private DTOSelectedDate date;
+	private DTOSelectedDate date;  //@SM: le modèle ne doit jamais utiliser  ni connaitre des DTO des vues...
 	
 	public Receipt(Customer customer, Reservation reservation, DTOSelectedDate date){
 		this.reservation = reservation;

@@ -12,7 +12,7 @@ public class WolfObservationActivity extends ActivityOption {
 	}
 	
 	@Override
-	public double getOptionCost(){
+	public double getOptionCost(){  //@SM: refactoring du TP2
 		return WolfObservationActivity.unitCostPerPerson * super.getNumberOfPeople();
 	}
 	

@@ -27,7 +27,7 @@ public class ReservationReceiptView extends ReservationView {
 	}
 	
 	private void setupPanel(){
-		JPanel panel = new JPanel(new BorderLayout());
+		JPanel panel = new JPanel(new BorderLayout()); 
 		JLabel label = new JLabel("Merci d'avoir réservé le chalet! Voici votre facture détaillée:");
 		panel.add(label, BorderLayout.NORTH);
 		

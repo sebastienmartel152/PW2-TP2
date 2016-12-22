@@ -15,12 +15,12 @@ public class ReservationActivitiesView extends ReservationView {
 	
 	private final String MAIN_LABEL_TEXT = "Voici les activités offertes en option:";
 	
-	private final String FLY_FISHING_ACTIVITY_TEXT = "Pêche à la mouche";
+	private final String FLY_FISHING_ACTIVITY_TEXT = "Pêche à la mouche";  //@SM: pourquoi ne pas avoir fait la même chose que pour le texte des chalets?
 	private final String BLACK_BEAR_ACTIVITY_TEXT = "Observation de l'ours noir";
 	private final String WOLF_OBSERVATION_ACTIVITY_TEXT = "Observation des loups";
 	
 	private JCheckBox flyFishingActivityCheckbox;
-	private JCheckBox blackBearActivityCheckbox;
+	private JCheckBox blackBearActivityCheckbox; 
 	private JCheckBox wolfObservationActivityCheckbox;
 	
 	private ReservationController reservationController;
